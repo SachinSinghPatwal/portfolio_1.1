@@ -81,7 +81,7 @@ export function ContactSection() {
         
         <div className="md:col-span-3">
           {submitted ? (
-            <div className="p-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] text-center flex flex-col items-center">
+            <div className="p-8 border border-white/[0.08] bg-white/[0.02] text-center flex flex-col items-center">
               <CheckCircle2 className="h-8 w-8 text-zinc-300 mb-3" />
               <h3 className="text-base font-semibold text-white">Inquiry Dispatched</h3>
               <p className="text-xs text-zinc-400 mt-1 max-w-xs">
@@ -89,7 +89,7 @@ export function ContactSection() {
               </p>
               <button
                 onClick={() => setSubmitted(false)}
-                className="mt-6 px-4 py-2 text-xs font-mono rounded-lg border border-white/[0.08] bg-white/[0.04] text-zinc-300 hover:text-white hover:border-white/[0.18]"
+                className="mt-6 px-4 py-2 text-xs font-mono border border-white/[0.08] bg-white/[0.04] text-zinc-300 hover:text-white hover:border-white/[0.18]"
               >
                 Send Another Message
               </button>
@@ -105,7 +105,7 @@ export function ContactSection() {
                   <input
                     {...register("name")}
                     placeholder="Jane Doe"
-                    className={`w-full px-3.5 py-2.5 rounded-xl border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
+                    className={`w-full px-3.5 py-2.5 border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
                       errors.name ? "border-rose-500/80" : "border-white/[0.07] focus:border-white/[0.2]"
                     }`}
                   />
@@ -122,7 +122,7 @@ export function ContactSection() {
                     {...register("email")}
                     placeholder="jane@domain.com"
                     type="email"
-                    className={`w-full px-3.5 py-2.5 rounded-xl border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
+                    className={`w-full px-3.5 py-2.5 border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
                       errors.email ? "border-rose-500/80" : "border-white/[0.07] focus:border-white/[0.2]"
                     }`}
                   />
@@ -140,7 +140,7 @@ export function ContactSection() {
                   </label>
                   <select
                     {...register("projectType")}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.07] bg-black text-xs text-zinc-300 focus:outline-none focus:border-white/[0.2]"
+                    className="w-full px-3.5 py-2.5 border border-white/[0.07] bg-black text-xs text-zinc-300 focus:outline-none focus:border-white/[0.2]"
                   >
                     <option value="Design System">Design System Architecture</option>
                     <option value="Frontend Development">Full Frontend Development</option>
@@ -155,7 +155,7 @@ export function ContactSection() {
                   </label>
                   <select
                     {...register("budget")}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-white/[0.07] bg-black text-xs text-zinc-300 focus:outline-none focus:border-white/[0.2]"
+                    className="w-full px-3.5 py-2.5 border border-white/[0.07] bg-black text-xs text-zinc-300 focus:outline-none focus:border-white/[0.2]"
                   >
                     <option value="Immediate">Immediate (&lt; 2 weeks)</option>
                     <option value="Next Month">Next Month</option>
@@ -173,7 +173,7 @@ export function ContactSection() {
                   {...register("message")}
                   rows={4}
                   placeholder="Outline key goals, deliverables, and constraints..."
-                  className={`w-full px-3.5 py-2.5 rounded-xl border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
+                  className={`w-full px-3.5 py-2.5 border bg-white/[0.02] text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-colors ${
                     errors.message ? "border-rose-500/80" : "border-white/[0.07] focus:border-white/[0.2]"
                   }`}
                 />
@@ -186,7 +186,7 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 rounded-xl bg-zinc-100 text-zinc-950 text-xs font-semibold hover:bg-white disabled:opacity-50 transition-all flex items-center justify-center gap-2 active:scale-[0.99] shadow-sm"
+                className="w-full py-3 px-4 bg-zinc-100 text-zinc-950 text-xs font-semibold hover:bg-white disabled:opacity-50 transition-all flex items-center justify-center gap-2 active:scale-[0.99] shadow-sm"
               >
                 {isSubmitting ? (
                   <span>Sending inquiry...</span>
@@ -203,7 +203,7 @@ export function ContactSection() {
 
         
         <div className="md:col-span-2 space-y-4">
-          <div className="p-5 rounded-2xl border border-white/[0.06] bg-white/[0.015]">
+          <div className="p-5 border border-white/[0.06] bg-white/[0.015]">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-3">
               <Mail className="h-3.5 w-3.5 text-zinc-400" />
               <span>Direct Electronic Mail</span>
@@ -211,7 +211,7 @@ export function ContactSection() {
             <p className="font-mono text-xs text-zinc-200 select-all mb-3">{email}</p>
             <button
               onClick={copyEmail}
-              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] text-zinc-300 text-xs font-mono transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 py-2 border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] text-zinc-300 text-xs font-mono transition-colors"
             >
               {copied ? (
                 <>
@@ -227,7 +227,7 @@ export function ContactSection() {
             </button>
           </div>
 
-          <div className="p-5 rounded-2xl border border-white/[0.06] bg-white/[0.015]">
+          <div className="p-5 border border-white/[0.06] bg-white/[0.015]">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-2">
               <Clock className="h-3.5 w-3.5 text-zinc-400" />
               <span>Turnaround Guarantee</span>

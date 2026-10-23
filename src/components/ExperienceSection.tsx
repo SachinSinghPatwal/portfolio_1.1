@@ -55,7 +55,7 @@ export function ExperienceSection() {
         {EXPERIENCES.map((exp, idx) => (
           <div key={idx} className="relative group">
             
-            <div className="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full border border-white/[0.15] bg-black group-hover:border-white/[0.4] transition-colors" />
+            <div className="absolute -left-[30px] top-1.5 h-2.5 w-2.5 border border-white/[0.15] bg-black group-hover:border-white/[0.4] transition-colors" />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-zinc-500 mb-1.5">
               <span className="text-zinc-400">{exp.period}</span>
@@ -76,7 +76,7 @@ export function ExperienceSection() {
               {exp.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 rounded text-[10px] font-mono text-zinc-500 bg-white/[0.02] border border-white/[0.05]"
+                  className="px-2 py-0.5 text-[10px] font-mono text-zinc-500 bg-white/[0.02] border border-white/[0.05]"
                 >
                   {tag}
                 </span>

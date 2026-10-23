@@ -331,9 +331,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] text-xs font-mono text-zinc-400 mb-5"
+          className="inline-flex items-center gap-2 px-3 py-1 border border-white/[0.08] bg-white/[0.02] text-xs font-mono text-zinc-400 mb-5"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
+          <span className="h-1.5 w-1.5 bg-zinc-300" />
           <span>Alex Rivera — Staff Design Engineer</span>
         </motion.div>
 
@@ -373,7 +373,7 @@ export function HeroSection() {
           <button
             type="button"
             onClick={() => setDropdownOpen((prev) => !prev)}
-            className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl border border-white/[0.1] bg-[#0c0c0e] hover:bg-white/[0.04] text-xs font-mono text-zinc-200 transition-colors cursor-pointer shadow-lg"
+            className="flex items-center gap-2.5 px-3.5 py-1.5 border border-white/[0.1] bg-[#0c0c0e] hover:bg-white/[0.04] text-xs font-mono text-zinc-200 transition-colors cursor-pointer shadow-lg"
           >
             <LayoutGrid className="size-3.5 text-zinc-400" />
             <span className="font-medium">{currentPreset.name}</span>
@@ -394,7 +394,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-white/[0.12] bg-[#09090c]/95 backdrop-blur-xl p-1.5 shadow-2xl z-50 text-left"
+                className="absolute right-0 top-full mt-2 w-72 border border-white/[0.12] bg-[#09090c]/95 backdrop-blur-xl p-1.5 shadow-2xl z-50 text-left"
               >
                 <div className="px-2.5 py-1.5 text-[10px] font-mono text-zinc-500 uppercase tracking-wider border-b border-white/[0.06] mb-1">
                   Select Bento Combination
@@ -410,7 +410,7 @@ export function HeroSection() {
                           setSelectedPresetId(preset.id);
                           setDropdownOpen(false);
                         }}
-                        className={`w-full flex items-center justify-between p-2 rounded-lg text-left transition-all cursor-pointer ${
+                        className={`w-full flex items-center justify-between p-2 text-left transition-all cursor-pointer ${
                           isSelected
                             ? "bg-white/[0.08] text-white"
                             : "hover:bg-white/[0.04] text-zinc-400 hover:text-zinc-200"
@@ -439,7 +439,7 @@ export function HeroSection() {
 
       <div
         id="work"
-        className={`relative grid ${currentPreset.gridClass} gap-3.5 w-full h-auto md:h-[620px] transition-all duration-300`}
+        className={`relative grid ${currentPreset.gridClass} gap-3.5 w-full h-auto md:h-[620px]`}
       >
         {currentPreset.blocks.map((block) => {
           const project = getProject(block);
@@ -448,8 +448,12 @@ export function HeroSection() {
             <motion.div
               key={block.id}
               layoutId={project ? `bento-slot-${project.id}` : undefined}
-              layout
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30,
+                mass: 0.8,
+              }}
               onClick={() => {
                 if (project) {
                   setSelectedProject(project);
@@ -460,11 +464,11 @@ export function HeroSection() {
                   pingWarmup(project.healthCheckUrl || project.previewUrl);
                 }
               }}
-              className={`group relative ${block.className} rounded-sm border border-white/[0.08] hover:border-white/[0.24] bg-white/[0.015] hover:bg-[#0c0c0f] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-10 hover:z-20 hover:shadow-2xl hover:shadow-black/90 cursor-pointer flex flex-col justify-between overflow-hidden`}
+              className={`group relative ${block.className} border border-white/[0.08] hover:border-white/[0.24] bg-white/[0.015] hover:bg-[#0c0c0f] transition-colors duration-200 z-10 hover:z-20 hover:shadow-2xl hover:shadow-black/90 cursor-pointer flex flex-col justify-between overflow-hidden transform-gpu will-change-transform`}
             >
 
               {project?.isLive && project?.previewUrl ? (
-                <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] rounded-xl overflow-hidden bg-black border border-white/[0.08] shadow-inner my-2">
+                <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-black border border-white/[0.08] shadow-inner">
                   <iframe
                     src={project.previewUrl}
                     title={project.title}
@@ -479,7 +483,7 @@ export function HeroSection() {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
-                  <div className="h-10 w-10 rounded-xl border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">
+                  <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">
                     {block.dimensions}
                   </div>
                   <div className="text-xs font-mono text-zinc-400 group-hover:text-zinc-200 transition-colors">

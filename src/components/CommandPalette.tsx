@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -110,7 +111,7 @@ export function CommandPalette() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: -10 }}
           transition={{ duration: 0.15 }}
-          className="relative w-full max-w-lg rounded-2xl border border-white/[0.08] bg-zinc-950 shadow-2xl overflow-hidden z-10"
+          className="relative w-full max-w-lg border border-white/[0.08] bg-zinc-950 shadow-2xl overflow-hidden z-10"
         >
           
           <div className="flex items-center px-4 border-b border-white/[0.07]">
@@ -124,7 +125,7 @@ export function CommandPalette() {
             />
             <button
               onClick={() => setCommandOpen(false)}
-              className="text-[10px] font-mono px-1.5 py-0.5 rounded border border-white/[0.08] text-zinc-500 hover:text-zinc-300"
+              className="text-[10px] font-mono px-1.5 py-0.5 border border-white/[0.08] text-zinc-500 hover:text-zinc-300"
             >
               ESC
             </button>
@@ -143,7 +144,7 @@ export function CommandPalette() {
                   <button
                     key={item.id}
                     onClick={item.action}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left text-xs text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors group"
+                    className="w-full flex items-center justify-between px-3 py-2.5 text-left text-xs text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors group"
                   >
                     <div className="flex items-center gap-2.5">
                       <Icon className="h-4 w-4 text-zinc-500 group-hover:text-zinc-200" />

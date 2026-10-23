@@ -40,10 +40,10 @@ export function CraftSection() {
         </div>
 
         
-        <div className="flex gap-1 bg-white/[0.02] p-1 rounded-lg border border-white/[0.07]">
+        <div className="flex gap-1 bg-white/[0.02] p-1 border border-white/[0.07]">
           <button
             onClick={() => setActiveTab("spring")}
-            className={`px-3 py-1 rounded text-xs font-mono transition-all ${
+            className={`px-3 py-1 text-xs font-mono transition-all ${
               activeTab === "spring" ? "bg-white/[0.1] text-white" : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -51,7 +51,7 @@ export function CraftSection() {
           </button>
           <button
             onClick={() => setActiveTab("matrix")}
-            className={`px-3 py-1 rounded text-xs font-mono transition-all ${
+            className={`px-3 py-1 text-xs font-mono transition-all ${
               activeTab === "matrix" ? "bg-white/[0.1] text-white" : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -61,7 +61,7 @@ export function CraftSection() {
       </div>
 
       
-      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.025] p-6 md:p-8 relative overflow-hidden transition-all duration-300">
+      <div className="border border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.025] p-6 md:p-8 relative overflow-hidden transition-all duration-300">
         {activeTab === "spring" && (
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <span className="text-xs font-mono text-zinc-500 mb-6 flex items-center gap-1.5">
@@ -74,14 +74,14 @@ export function CraftSection() {
               onMouseLeave={handleMouseLeave}
               className="relative p-10 flex items-center justify-center cursor-pointer"
             >
-              <div className="absolute inset-0 rounded-2xl border border-dashed border-white/[0.06] bg-white/[0.01]" />
+              <div className="absolute inset-0 border border-dashed border-white/[0.06] bg-white/[0.01]" />
               <motion.div
                 style={{ x: springX, y: springY }}
                 whileTap={{ scale: 0.94 }}
                 onClick={() => toast.success("Physical spring triggered with 280 stiffness / 22 damping")}
-                className="relative px-6 py-3 rounded-xl border border-white/[0.12] bg-zinc-900/80 text-white font-mono text-xs font-medium shadow-md hover:border-white/[0.25] transition-colors flex items-center gap-2 select-none"
+                className="relative px-6 py-3 border border-white/[0.12] bg-zinc-900/80 text-white font-mono text-xs font-medium shadow-md hover:border-white/[0.25] transition-colors flex items-center gap-2 select-none"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
+                <span className="h-1.5 w-1.5 bg-zinc-300" />
                 <span>Elastic Magnetic Trigger</span>
               </motion.div>
             </div>
@@ -107,10 +107,10 @@ export function CraftSection() {
                 max="100"
                 value={sliderVal}
                 onChange={(e) => setSliderVal(Number(e.target.value))}
-                className="w-full h-1.5 bg-zinc-900 rounded-lg appearance-none cursor-pointer accent-white focus:outline-none"
+                className="w-full h-1.5 bg-zinc-900 appearance-none cursor-pointer accent-white focus:outline-none"
               />
               <div
-                className="absolute top-1/2 -translate-y-1/2 h-1.5 bg-zinc-400 rounded-lg pointer-events-none transition-all"
+                className="absolute top-1/2 -translate-y-1/2 h-1.5 bg-zinc-400 pointer-events-none transition-all"
                 style={{ width: `${sliderVal}%` }}
               />
             </div>
@@ -120,7 +120,7 @@ export function CraftSection() {
                 <button
                   key={preset}
                   onClick={() => setSliderVal(preset)}
-                  className={`py-1.5 text-[11px] font-mono rounded border transition-colors ${
+                  className={`py-1.5 text-[11px] font-mono border transition-colors ${
                     sliderVal === preset
                       ? "border-white/[0.25] bg-white/[0.08] text-white"
                       : "border-white/[0.06] bg-white/[0.02] text-zinc-500 hover:text-zinc-200"

@@ -10,14 +10,7 @@ import {
   MotionValue,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
-import {
-  Home,
-  Briefcase,
-  Sparkles,
-  Layers,
-  Mail,
-  Command,
-} from "lucide-react";
+import { Home, Briefcase, Sparkles, Layers, Mail, Command } from "lucide-react";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { usePortfolioStore } from "@/store/usePortfolioStore";
 
@@ -154,7 +147,12 @@ export function FloatingDock({ className = "" }: { className?: string }) {
   ];
 
   return (
-    <div className={cn("fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4", className)}>
+    <div
+      className={cn(
+        "fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4",
+        className,
+      )}
+    >
       <motion.nav
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

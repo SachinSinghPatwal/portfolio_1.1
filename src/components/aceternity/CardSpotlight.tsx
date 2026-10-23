@@ -38,14 +38,14 @@ export function CardSpotlight({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.025] backdrop-blur-sm",
+        "relative border border-white/[0.06] bg-white/[0.015] p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.025] backdrop-blur-sm",
         className
       )}
       {...props}
     >
       
       <div
-        className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300"
         style={{
           opacity,
           background: `radial-gradient(${radius}px circle at ${position.x}px ${position.y}px, ${color}, transparent 80%)`,
