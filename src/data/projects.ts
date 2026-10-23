@@ -16,6 +16,7 @@ export const PROJECTS: ProjectItem[] = [
     previewUrl: "https://js-one-liard.vercel.app/",
     healthCheckUrl: "https://js-one-liard.vercel.app/health",
     isLive: true,
+    desktopOnly: true,
     highlights: [
       "Real-time async call stack visualization",
       "Visual microtask and macrotask queue dynamics",
@@ -61,6 +62,7 @@ export const PROJECTS: ProjectItem[] = [
     previewUrl: "https://gsap-ruby-phi.vercel.app/",
     healthCheckUrl: "https://gsap-ruby-phi.vercel.app/",
     isLive: true,
+    desktopOnly: true,
     highlights: [
       "Multi-phase GSAP timeline choreography with scrubbed triggers",
       "Fluid typographic transitions and inertia-based motion dynamics",

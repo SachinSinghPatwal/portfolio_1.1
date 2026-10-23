@@ -15,6 +15,7 @@ export interface ProjectItem {
   previewUrl?: string;
   healthCheckUrl?: string;
   isLive?: boolean;
+  desktopOnly?: boolean;
   highlights: string[];
   gradient: string;
 }

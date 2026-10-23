@@ -9,6 +9,7 @@ import {
   LayoutGrid,
   Check,
   Sparkles,
+  RotateCw,
 } from "lucide-react";
 import { FaGithub, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 
@@ -303,10 +304,11 @@ function BentoLivePreview({
   return (
     <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405] border border-white/[0.08] shadow-inner">
       <div
-        className={`absolute inset-0 z-10 flex items-center justify-center bg-[#040405] transition-opacity duration-300 ${
+        className={`absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-[#040405] transition-opacity duration-300 ${
           loaded ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
+        <RotateCw className="h-4 w-4 animate-spin text-zinc-500" />
         <span className="text-[10px] font-mono text-zinc-600 animate-pulse">
           Connecting preview...
         </span>

@@ -14,8 +14,6 @@ import {
   RotateCw,
   Lock,
   Copy,
-  Layers,
-  Sparkles,
   Maximize2,
   Minimize2,
 } from "lucide-react";
@@ -26,12 +24,19 @@ type DeviceMode = "desktop" | "tablet" | "mobile";
 
 export function ProjectModal() {
   const { selectedProject, setSelectedProject, cachedProjectIds } = usePortfolioStore();
-  const [activeTab, setActiveTab] = useState<"preview" | "specs">("preview");
+  const [activeTab] = useState<"preview" | "specs">("preview");
   const [device, setDevice] = useState<DeviceMode>("desktop");
   const [reloadKeys, setReloadKeys] = useState<Record<string, number>>({});
   const [loadedUrls, setLoadedUrls] = useState<Record<string, boolean>>({});
   const [isFullscreen, setIsFullscreen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const isDesktopOnly = Boolean(
+    selectedProject?.desktopOnly ||
+    selectedProject?.id === "JAV" ||
+    selectedProject?.id === "gsap-studio"
+  );
+  const activeDevice = isDesktopOnly ? "desktop" : device;
 
   useEffect(() => {
     const handleFsChange = () => {
@@ -50,6 +55,35 @@ export function ProjectModal() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [setSelectedProject]);
+
+  useEffect(() => {
+    if (selectedProject) {
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+
+      // Pause Lenis smooth scroll while project is active
+      const win =
+        typeof window !== "undefined"
+          ? (window as unknown as {
+              lenis?: { stop: () => void; start: () => void };
+            })
+          : null;
+      if (win?.lenis) {
+        win.lenis.stop();
+      }
+
+      return () => {
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        if (win?.lenis) {
+          win.lenis.start();
+        }
+      };
+    }
+  }, [selectedProject]);
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -161,7 +195,7 @@ export function ProjectModal() {
                         type="button"
                         onClick={() => setDevice("desktop")}
                         className={`p-1.5 transition-colors cursor-pointer ${
-                          device === "desktop"
+                          activeDevice === "desktop"
                             ? "bg-white/[0.1] text-white"
                             : "text-zinc-500 hover:text-zinc-300"
                         }`}
@@ -169,30 +203,34 @@ export function ProjectModal() {
                       >
                         <Monitor className="h-3.5 w-3.5" />
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setDevice("tablet")}
-                        className={`p-1.5 transition-colors cursor-pointer ${
-                          device === "tablet"
-                            ? "bg-white/[0.1] text-white"
-                            : "text-zinc-500 hover:text-zinc-300"
-                        }`}
-                        title="Tablet Viewport (768px)"
-                      >
-                        <Tablet className="h-3.5 w-3.5" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDevice("mobile")}
-                        className={`p-1.5 transition-colors cursor-pointer ${
-                          device === "mobile"
-                            ? "bg-white/[0.1] text-white"
-                            : "text-zinc-500 hover:text-zinc-300"
-                        }`}
-                        title="Mobile Viewport (375px)"
-                      >
-                        <Smartphone className="h-3.5 w-3.5" />
-                      </button>
+                      {!isDesktopOnly && (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => setDevice("tablet")}
+                            className={`p-1.5 transition-colors cursor-pointer ${
+                              activeDevice === "tablet"
+                                ? "bg-white/[0.1] text-white"
+                                : "text-zinc-500 hover:text-zinc-300"
+                            }`}
+                            title="Tablet Viewport (768px)"
+                          >
+                            <Tablet className="h-3.5 w-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setDevice("mobile")}
+                            className={`p-1.5 transition-colors cursor-pointer ${
+                              activeDevice === "mobile"
+                                ? "bg-white/[0.1] text-white"
+                                : "text-zinc-500 hover:text-zinc-300"
+                            }`}
+                            title="Mobile Viewport (375px)"
+                          >
+                            <Smartphone className="h-3.5 w-3.5" />
+                          </button>
+                        </>
+                      )}
                     </div>
 
                     <div className="flex-1 max-w-lg mx-2 flex items-center justify-between px-3 py-1 border border-white/[0.08] bg-black/60 text-zinc-400 text-[11px]">
@@ -270,9 +308,9 @@ export function ProjectModal() {
                   <div className="flex-1 w-full overflow-hidden p-2 flex items-center justify-center bg-[#020203]">
                     <div
                       className={`h-full w-full transition-[max-width] duration-300 overflow-hidden border border-white/[0.08] bg-[#040405] shadow-inner flex items-center justify-center relative ${
-                        device === "mobile"
+                        activeDevice === "mobile"
                           ? "max-w-[375px]"
-                          : device === "tablet"
+                          : activeDevice === "tablet"
                             ? "max-w-[768px]"
                             : "max-w-full"
                       }`}
