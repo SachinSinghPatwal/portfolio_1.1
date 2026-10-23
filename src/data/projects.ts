@@ -1,0 +1,91 @@
+import { ProjectItem } from "@/store/usePortfolioStore";
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    id: "JAV",
+    title: "JAV",
+    tagline: "JavaScript Async Handler",
+    description: "js visualizer",
+    year: "2024",
+    role: "Founding Engineer",
+    category: "Web App",
+    tags: ["Three.js", "WebGPU", "React 19", "Zustand", "GSAP"],
+    metrics: "live preview of code and behind the scene",
+    githubUrl: "https://github.com/SachinSinghPatwal/js_",
+    liveUrl: "https://js-one-liard.vercel.app/",
+    previewUrl: "https://js-one-liard.vercel.app/",
+    healthCheckUrl: "https://js-one-liard.vercel.app/health",
+    isLive: true,
+    highlights: [],
+    gradient: "from-white/[0.05] to-transparent",
+  },
+  {
+    id: "chronos",
+    title: "Chronos Design System",
+    tagline:
+      "High-density token architecture & component primitives built for real-time financial trading suites",
+    description:
+      "A complete multi-platform design system designed for millisecond latency applications. Features 60+ accessible primitives, sub-pixel alignment, and token pipeline syncing directly from Figma variables to Tailwind tokens.",
+    year: "2025",
+    role: "Lead Systems Architect",
+    category: "Design System",
+    tags: ["Next.js", "Tailwind CSS", "Figma API", "Radix", "Tokens"],
+    metrics: "Reduced frontend dev cycle by 42% across 8 teams",
+    githubUrl: "https://github.com",
+    liveUrl: "https://chronos-design.vercel.app",
+    previewUrl: "https://chronos-design.vercel.app",
+    healthCheckUrl: "",
+    highlights: [
+      "Sub-pixel typography and mathematical spacing scales",
+      "Automated token compilation from Figma REST API",
+      "Full WCAG 2.1 AAA contrast and keyboard traversal",
+    ],
+    gradient: "from-white/[0.05] to-transparent",
+  },
+  {
+    id: "vesper",
+    title: "Vesper Markdown",
+    tagline:
+      "Distraction-free typographic writing environment with local SQLite encryption",
+    description:
+      "A clean desktop-grade markdown editor emphasizing typographic rhythm, bilateral sync with Git repositories, and local-first SQLite persistence.",
+    year: "2024",
+    role: "Solo Creator",
+    category: "Micro-tool",
+    tags: ["TypeScript", "Next.js", "Tailwind CSS", "Tauri", "IndexedDB"],
+    metrics: "12,000+ monthly active writers worldwide",
+    githubUrl: "https://github.com",
+    liveUrl: "https://vesper-markdown.vercel.app",
+    previewUrl: "https://vesper-markdown.vercel.app",
+    healthCheckUrl: "https://vesper-markdown.vercel.app/api/health",
+    highlights: [
+      "Calculated vertical rhythm for optimal editorial reading comfort",
+      "Offline-first sync engine with zero data telemetry",
+      "Instant export to LaTeX, Clean PDF, and HTML",
+    ],
+    gradient: "from-white/[0.05] to-transparent",
+  },
+  {
+    id: "aura",
+    title: "Aura Kinetic Engine",
+    tagline:
+      "Physics-driven animation primitives for tactile touch & gesture dynamics",
+    description:
+      "A micro-library exploring spring dynamics, physical inertia, and elastic bounds for web interfaces. Modeled after Apple iOS fluidity and physical spring parameters.",
+    year: "2024",
+    role: "Research & Development",
+    category: "Experiment",
+    tags: ["GSAP", "Framer Motion", "Canvas", "Physics", "Math"],
+    metrics: "Featured on SiteInspire and Godly Websites",
+    githubUrl: "https://github.com",
+    liveUrl: "https://aura-engine.vercel.app",
+    previewUrl: "https://aura-engine.vercel.app",
+    healthCheckUrl: "https://aura-engine.vercel.app/api/health",
+    highlights: [
+      "Custom Euler integration spring solver for smooth 120hz monitors",
+      "Dynamic magnetic cursors with velocity decay",
+      "Haptic visual feedback triggers",
+    ],
+    gradient: "from-white/[0.05] to-transparent",
+  },
+];

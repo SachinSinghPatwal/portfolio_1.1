@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --background: #040405;
+  --foreground: #ededed;
+  --muted: #52525b;
+  --muted-foreground: #71717a;
+  --border: rgba(255, 255, 255, 0.13);
+  --accent: #111113;
+  --accent-foreground: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+html {
+  color-scheme: dark;
+  background-color: #040405;
+}
+
+iframe {
+  background-color: #040405;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #040405;
+  color: #ededed;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #040405;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.bg-dashed-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dashed-line-h {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.14) 0,
+    rgba(255, 255, 255, 0.14) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  height: 1px;
+  width: 100%;
+}
+
+.dashed-line-v {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.14) 0,
+    rgba(255, 255, 255, 0.14) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  width: 1px;
+}
