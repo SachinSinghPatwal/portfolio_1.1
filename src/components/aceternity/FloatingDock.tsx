@@ -161,23 +161,17 @@ export function FloatingDock({ className = "" }: { className?: string }) {
         onMouseLeave={() => mouseX.set(Infinity)}
         className="pointer-events-auto flex items-end h-16 gap-2.5 px-3 pb-3 rounded-2xl border border-white/[0.08] bg-black/75 backdrop-blur-2xl shadow-2xl shadow-black/80"
       >
-        {items.map((item, idx) => {
-          const isSeparatorBefore = idx === 5;
-          return (
-            <React.Fragment key={item.title}>
-              {isSeparatorBefore && (
-                <div className="h-7 w-[1px] bg-white/[0.08] mx-0.5 my-auto self-center" />
-              )}
-              <DockIcon
-                mouseX={mouseX}
-                title={item.title}
-                icon={item.icon}
-                href={item.href}
-                onClick={item.onClick}
-              />
-            </React.Fragment>
-          );
-        })}
+        {items.map((item) => (
+          <React.Fragment key={item.title}>
+            <DockIcon
+              mouseX={mouseX}
+              title={item.title}
+              icon={item.icon}
+              href={item.href}
+              onClick={item.onClick}
+            />
+          </React.Fragment>
+        ))}
       </motion.nav>
     </div>
   );

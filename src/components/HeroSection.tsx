@@ -282,6 +282,46 @@ const BENTO_PRESETS: BentoPreset[] = [
   },
 ];
 
+function BentoLivePreview({
+  previewUrl,
+  title,
+}: {
+  previewUrl: string;
+  title: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405] border border-white/[0.08] shadow-inner">
+      <div
+        className={`absolute inset-0 z-10 flex items-center justify-center bg-[#040405] transition-opacity duration-300 ${
+          loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <span className="text-[10px] font-mono text-zinc-600 animate-pulse">
+          Connecting preview...
+        </span>
+      </div>
+      <iframe
+        src={previewUrl}
+        title={title}
+        onLoad={() => {
+          setTimeout(() => setLoaded(true), 500);
+        }}
+        className={`w-[300%] h-[300%] origin-top-left scale-[0.333333] border-0 pointer-events-none select-none bg-[#040405] transition-opacity duration-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          colorScheme: "dark",
+          backgroundColor: "#040405",
+        }}
+        tabIndex={-1}
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
 export function HeroSection() {
   const [selectedPresetId, setSelectedPresetId] = useState("rotated-fibonacci");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -450,9 +490,9 @@ export function HeroSection() {
               layoutId={project ? `bento-slot-${project.id}` : undefined}
               transition={{
                 type: "spring",
-                stiffness: 300,
-                damping: 30,
-                mass: 0.8,
+                stiffness: 520,
+                damping: 38,
+                mass: 0.5,
               }}
               onClick={() => {
                 if (project) {
@@ -468,19 +508,10 @@ export function HeroSection() {
             >
 
               {project?.isLive && project?.previewUrl ? (
-                <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-black border border-white/[0.08] shadow-inner">
-                  <iframe
-                    src={project.previewUrl}
-                    title={project.title}
-                    className="w-[300%] h-[300%] origin-top-left scale-[0.333333] border-0 pointer-events-none select-none bg-[#040405]"
-                    style={{
-                      colorScheme: "dark",
-                      backgroundColor: "#040405",
-                    }}
-                    tabIndex={-1}
-                    loading="lazy"
-                  />
-                </div>
+                <BentoLivePreview
+                  previewUrl={project.previewUrl}
+                  title={project.title}
+                />
               ) : (
                 <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
                   <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">

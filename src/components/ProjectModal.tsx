@@ -86,6 +86,16 @@ export function ProjectModal() {
     }
   };
 
+  const handleIframeLoad = (id: string) => {
+    // Wait for the client-side React bundle in the iframe to evaluate and paint its dark UI
+    setTimeout(() => {
+      setLoadedUrls((prev) => ({
+        ...prev,
+        [id]: true,
+      }));
+    }, 500);
+  };
+
   const getCachedProject = (id: string) => {
     return (
       PROJECTS.find((p) => p.id === id) ||
@@ -101,7 +111,7 @@ export function ProjectModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.15 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 overflow-hidden pointer-events-auto"
         >
           <div
@@ -114,9 +124,9 @@ export function ProjectModal() {
             layoutId={`bento-slot-${selectedProject.id}`}
             transition={{
               type: "spring",
-              stiffness: 300,
-              damping: 30,
-              mass: 0.8,
+              stiffness: 520,
+              damping: 38,
+              mass: 0.5,
             }}
             className={`relative flex flex-col bg-[#070709] text-left z-10 overflow-hidden shadow-2xl transform-gpu will-change-transform ${
               isFullscreen
@@ -128,7 +138,7 @@ export function ProjectModal() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
               className="flex-1 flex flex-col min-h-0 bg-[#040405] overflow-hidden"
             >
               {activeTab === "preview" ? (
@@ -274,25 +284,24 @@ export function ProjectModal() {
                                 : "absolute inset-0 opacity-0 pointer-events-none -z-10"
                             }`}
                           >
-                            {!isLoaded && isActive && (
-                              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040405] text-zinc-400 font-mono text-xs gap-3">
-                                <RotateCw className="h-5 w-5 animate-spin text-zinc-500" />
-                                <span>Connecting to instance...</span>
-                              </div>
-                            )}
+                            <div
+                              className={`absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#040405] text-zinc-400 font-mono text-xs gap-3 transition-opacity duration-300 ${
+                                isLoaded && isActive
+                                  ? "opacity-0 pointer-events-none"
+                                  : "opacity-100"
+                              }`}
+                            >
+                              <RotateCw className="h-5 w-5 animate-spin text-zinc-500" />
+                              <span>Connecting to instance...</span>
+                            </div>
 
                             <iframe
                               src={targetUrl}
                               title={proj.title}
-                              onLoad={() =>
-                                setLoadedUrls(
-                                  (prev: Record<string, boolean>) => ({
-                                    ...prev,
-                                    [id]: true,
-                                  }),
-                                )
-                              }
-                              className="w-full h-full border-0 select-none bg-[#040405]"
+                              onLoad={() => handleIframeLoad(id)}
+                              className={`w-full h-full border-0 select-none bg-[#040405] transition-opacity duration-500 ${
+                                isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
+                              }`}
                               style={{
                                 colorScheme: "dark",
                                 backgroundColor: "#040405",
