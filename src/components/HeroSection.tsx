@@ -377,16 +377,6 @@ export function HeroSection() {
   return (
     <div className="relative pt-6 pb-8 md:pt-10 overflow-visible">
       <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto mb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 border border-white/[0.08] bg-white/[0.02] text-xs font-mono text-zinc-400 mb-5"
-        >
-          <span className="h-1.5 w-1.5 bg-zinc-300" />
-          <span>Alex Rivera — Staff Design Engineer</span>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -516,7 +506,6 @@ export function HeroSection() {
               }}
               className={`group relative ${block.className} border border-white/[0.08] hover:border-white/[0.24] bg-white/[0.015] hover:bg-[#0c0c0f] transition-colors duration-200 z-10 hover:z-20 hover:shadow-2xl hover:shadow-black/90 cursor-pointer flex flex-col justify-between overflow-hidden transform-gpu will-change-transform`}
             >
-
               {project?.isLive && project?.previewUrl ? (
                 <>
                   <BentoLivePreview
