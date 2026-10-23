@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BackgroundBeams } from "@/components/aceternity/BackgroundBeams";
 import { usePortfolioStore } from "@/store/usePortfolioStore";
 import { PROJECTS } from "@/data/projects";
 import {
@@ -290,6 +289,16 @@ function BentoLivePreview({
   title: string;
 }) {
   const [loaded, setLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Safety fallback: auto-reveal preview after 1s so it never stays stuck
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [previewUrl]);
 
   return (
     <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405] border border-white/[0.08] shadow-inner">
@@ -303,12 +312,13 @@ function BentoLivePreview({
         </span>
       </div>
       <iframe
+        ref={iframeRef}
         src={previewUrl}
         title={title}
         onLoad={() => {
-          setTimeout(() => setLoaded(true), 500);
+          setTimeout(() => setLoaded(true), 300);
         }}
-        className={`w-[300%] h-[300%] origin-top-left scale-[0.333333] border-0 pointer-events-none select-none bg-[#040405] transition-opacity duration-500 ${
+        className={`w-[300%] h-[300%] origin-top-left scale-[0.333333] border-0 pointer-events-none select-none bg-[#040405] transition-opacity duration-300 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
         style={{
@@ -316,7 +326,7 @@ function BentoLivePreview({
           backgroundColor: "#040405",
         }}
         tabIndex={-1}
-        loading="lazy"
+        loading="eager"
       />
     </div>
   );
@@ -364,8 +374,6 @@ export function HeroSection() {
 
   return (
     <div className="relative pt-6 pb-8 md:pt-10 overflow-visible">
-      <BackgroundBeams />
-
       <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto mb-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -508,10 +516,20 @@ export function HeroSection() {
             >
 
               {project?.isLive && project?.previewUrl ? (
-                <BentoLivePreview
-                  previewUrl={project.previewUrl}
-                  title={project.title}
-                />
+                <>
+                  <BentoLivePreview
+                    previewUrl={project.previewUrl}
+                    title={project.title}
+                  />
+                  <div className="px-3 py-1.5 border-t border-white/[0.06] bg-[#070709] flex items-center justify-between text-[11px] font-mono text-zinc-400 shrink-0">
+                    <span className="truncate font-medium text-zinc-300">
+                      {project.title}
+                    </span>
+                    <span className="text-[10px] text-zinc-600">
+                      {block.dimensions}
+                    </span>
+                  </div>
+                </>
               ) : (
                 <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
                   <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">

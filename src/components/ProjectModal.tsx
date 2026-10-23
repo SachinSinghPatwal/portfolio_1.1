@@ -93,8 +93,20 @@ export function ProjectModal() {
         ...prev,
         [id]: true,
       }));
-    }, 500);
+    }, 400);
   };
+
+  useEffect(() => {
+    if (selectedProject) {
+      const timer = setTimeout(() => {
+        setLoadedUrls((prev) => ({
+          ...prev,
+          [selectedProject.id]: true,
+        }));
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedProject]);
 
   const getCachedProject = (id: string) => {
     return (
