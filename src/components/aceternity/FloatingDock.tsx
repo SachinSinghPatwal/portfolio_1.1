@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Briefcase, Mail, FolderBookmark } from "lucide-react";
+import { Briefcase, Mail, FolderBookmark, File } from "lucide-react";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
 import { DockIcon } from "./DockIcon";
 
@@ -38,11 +38,11 @@ export function FloatingDock({ className = "" }: { className?: string }) {
       icon: <Mail className="h-4 w-4" />,
       href: "#contact",
     },
-    // {
-    //   title: "Resume",
-    //   icon: <File className="h-4 w-4" />,
-    //   href:"" ,
-    // },
+    {
+      title: "Resume",
+      icon: <File className="h-4 w-4" />,
+      href: "https://drive.google.com/file/d/1titc3emu5Krr1WkMvbftZgV3dSIQEEeg/view?usp=drive_link",
+    },
     {
       title: "GitHub",
       icon: <FaGithub className="h-4 w-4" />,

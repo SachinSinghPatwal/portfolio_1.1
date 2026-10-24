@@ -1,13 +1,9 @@
 "use client";
-
-import React from "react";
 import { DashedGridBackground } from "@/components/aceternity/DashedGridBackground";
 import { DashedSection } from "@/components/aceternity/DashedSection";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { CraftSection } from "@/components/CraftSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
-import { TechStackSection } from "@/components/TechStackSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { FloatingDock } from "@/components/aceternity/FloatingDock";
