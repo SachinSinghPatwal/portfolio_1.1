@@ -11,7 +11,7 @@ export function ExperienceSection() {
         </h2>
       </div>
 
-      <div className="relative pl-6 mb-4 border-l border-dashed  border-white/[0.07] space-y-9">
+      <div className="relative pl-6 mb-6 border-l border-dashed  border-white/[0.07] space-y-9">
         {EXPERIENCES.map((exp, idx) => (
           <ExperienceCard key={idx} exp={exp} />
         ))}

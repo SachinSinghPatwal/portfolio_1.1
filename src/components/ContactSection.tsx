@@ -13,7 +13,7 @@ export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const email = "alex.rivera.craft@gmail.com";
+  const email = "sachinsingh71004@gmail.com";
 
   const handleSubmit = async (_data: ContactFormData) => {
     setIsSubmitting(true);
@@ -22,7 +22,8 @@ export function ContactSection() {
     setSubmitted(true);
 
     toast.success("Message dispatched successfully", {
-      description: "Thanks for reaching out! I typically respond within 24 hours.",
+      description:
+        "Thanks for reaching out! I typically respond within 24 hours.",
       duration: 4000,
     });
 
@@ -43,17 +44,17 @@ export function ContactSection() {
 
   return (
     <div>
-      <div className="mb-8">
-        <div className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-2">
-          Contact
-        </div>
-        <h2 className="text-2xl font-bold tracking-tight text-white">Initiate Discussion</h2>
+      <div className="my-4">
+        <h2 className="text-2xl font-bold tracking-tight text-white">
+          Initiate Contact
+        </h2>
         <p className="text-xs sm:text-sm text-zinc-400 mt-2 max-w-lg leading-relaxed">
-          Open for select design engineering contracts and advisory. Fill out the brief below or write directly.
+          Open for select design engineering contracts and advisory. Fill out
+          the brief below or write directly.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
         <div className="md:col-span-3">
           {submitted ? (
             <ContactSuccessView onReset={() => setSubmitted(false)} />
@@ -62,11 +63,7 @@ export function ContactSection() {
           )}
         </div>
 
-        <ContactSidebar
-          email={email}
-          copied={copied}
-          onCopyEmail={copyEmail}
-        />
+        <ContactSidebar email={email} copied={copied} onCopyEmail={copyEmail} />
       </div>
     </div>
   );

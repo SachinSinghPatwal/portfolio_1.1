@@ -18,7 +18,7 @@ export default function Home() {
       <DashedGridBackground />
       <Navbar />
 
-      <DashedSection id="work">
+      <DashedSection id="hero">
         <HeroSection />
       </DashedSection>
 
@@ -30,9 +30,9 @@ export default function Home() {
         <ExperienceSection />
       </DashedSection>
 
-      <DashedSection>
+      {/* <DashedSection>
         <TechStackSection />
-      </DashedSection>
+      </DashedSection> */}
 
       <DashedSection id="contact">
         <ContactSection />

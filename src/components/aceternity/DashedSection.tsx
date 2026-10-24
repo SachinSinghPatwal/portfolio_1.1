@@ -19,7 +19,7 @@ export function DashedSection({
   showBottomBorder = true,
 }: DashedSectionProps) {
   return (
-    <section id={id} className="relative w-full overflow-visible">
+    <section id={id} className="relative w-full overflow-visible scroll-mt-20">
       {showTopBorder && (
         <div className="absolute top-0 left-0 right-0 w-full dashed-line-h z-10 pointer-events-none" />
       )}

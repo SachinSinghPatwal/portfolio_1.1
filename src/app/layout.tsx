@@ -17,21 +17,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Rivera — Staff Design Engineer & UI Craftsman",
+  title: "Sachin Singh Patwal — Frontend Developer",
   description:
-    "Clean, minimal, centered dark portfolio of Alex Rivera. Specializing in high-density design systems, micro-interactions, and performant frontend architectures.",
+    "Clean, minimal, centered dark portfolio of Sachin Singh Patwal.",
   keywords: [
-    "Design Engineer",
-    "Staff Frontend Engineer",
+    "Frontend Developer",
+    "Frontend Engineer",
     "Design Systems",
     "UI/UX",
     "Next.js Portfolio",
     "Framer Motion",
   ],
-  authors: [{ name: "Alex Rivera" }],
+  authors: [{ name: "Sachin Singh Patwal" }],
   openGraph: {
-    title: "Alex Rivera — Design Engineer Portfolio",
-    description: "Designing software with tactile weight and clarity.",
+    title: "Sachin Singh Patwal — Frontend Developer Portfolio",
+    description: "I build fast, scalable and beautiful web applications.",
     type: "website",
   },
 };

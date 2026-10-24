@@ -42,8 +42,16 @@ export function CommandPalette() {
       category: "Navigation",
       icon: Briefcase,
       action: () => {
-        window.location.hash = "#work";
         setCommandOpen(false);
+        const win = window as unknown as {
+          lenis?: { scrollTo: (t: string | Element) => void };
+        };
+        if (win?.lenis) {
+          win.lenis.scrollTo("#work");
+        } else {
+          document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", "#work");
       },
     },
     {
@@ -52,8 +60,16 @@ export function CommandPalette() {
       category: "Navigation",
       icon: Sparkles,
       action: () => {
-        window.location.hash = "#craft";
         setCommandOpen(false);
+        const win = window as unknown as {
+          lenis?: { scrollTo: (t: string | Element) => void };
+        };
+        if (win?.lenis) {
+          win.lenis.scrollTo("#craft");
+        } else {
+          document.querySelector("#craft")?.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", "#craft");
       },
     },
     {
@@ -62,8 +78,16 @@ export function CommandPalette() {
       category: "Navigation",
       icon: Layers,
       action: () => {
-        window.location.hash = "#experience";
         setCommandOpen(false);
+        const win = window as unknown as {
+          lenis?: { scrollTo: (t: string | Element) => void };
+        };
+        if (win?.lenis) {
+          win.lenis.scrollTo("#experience");
+        } else {
+          document.querySelector("#experience")?.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", "#experience");
       },
     },
     {
@@ -72,8 +96,16 @@ export function CommandPalette() {
       category: "Navigation",
       icon: Mail,
       action: () => {
-        window.location.hash = "#contact";
         setCommandOpen(false);
+        const win = window as unknown as {
+          lenis?: { scrollTo: (t: string | Element) => void };
+        };
+        if (win?.lenis) {
+          win.lenis.scrollTo("#contact");
+        } else {
+          document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", "#contact");
       },
     },
     {

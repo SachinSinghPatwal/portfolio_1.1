@@ -14,6 +14,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
+      anchors: true,
     });
 
     lenisRef.current = lenis;

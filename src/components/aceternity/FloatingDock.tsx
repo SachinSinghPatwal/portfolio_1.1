@@ -3,9 +3,8 @@
 import React from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Home, Briefcase, Sparkles, Layers, Mail, Command } from "lucide-react";
+import { Briefcase, Mail, FolderBookmark } from "lucide-react";
 import { FaGithub, FaXTwitter } from "react-icons/fa6";
-import { usePortfolioStore } from "@/store/usePortfolioStore";
 import { DockIcon } from "./DockIcon";
 
 interface DockItem {
@@ -17,48 +16,42 @@ interface DockItem {
 
 export function FloatingDock({ className = "" }: { className?: string }) {
   const mouseX = useMotionValue(Infinity);
-  const { toggleCommand } = usePortfolioStore();
 
   const items: DockItem[] = [
     {
-      title: "Top / Overview",
-      icon: <Home className="h-4 w-4" />,
-      href: "#",
-    },
-    {
-      title: "Selected Works",
-      icon: <Briefcase className="h-4 w-4" />,
+      title: "Work",
+      icon: <FolderBookmark className="h-4 w-4" />,
       href: "#work",
     },
-    {
-      title: "Interactive Craft",
-      icon: <Sparkles className="h-4 w-4" />,
-      href: "#craft",
-    },
+    // {
+    //   title: "Interactive Craft",
+    //   icon: <Sparkles className="h-4 w-4" />,
+    //   href: "#craft",
+    // },
     {
       title: "Experience",
-      icon: <Layers className="h-4 w-4" />,
+      icon: <Briefcase className="h-4 w-4" />,
       href: "#experience",
     },
     {
-      title: "Direct Contact",
+      title: "Contact",
       icon: <Mail className="h-4 w-4" />,
       href: "#contact",
     },
+    // {
+    //   title: "Resume",
+    //   icon: <File className="h-4 w-4" />,
+    //   href:"" ,
+    // },
     {
-      title: "Command Palette (⌘K)",
-      icon: <Command className="h-4 w-4" />,
-      onClick: toggleCommand,
-    },
-    {
-      title: "GitHub Repository",
+      title: "GitHub",
       icon: <FaGithub className="h-4 w-4" />,
-      href: "https://github.com",
+      href: "https://github.com/SachinSinghPatwal",
     },
     {
       title: "X / Twitter",
       icon: <FaXTwitter className="h-4 w-4" />,
-      href: "https://twitter.com",
+      href: "https://x.com/Sachin_S_Patwal",
     },
   ];
 

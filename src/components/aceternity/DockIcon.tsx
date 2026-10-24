@@ -72,9 +72,57 @@ export function DockIcon({
     </motion.div>
   );
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      onClick();
+    }
+
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+
+      if (target) {
+        window.history.pushState(null, "", href);
+
+        const win = window as unknown as {
+          lenis?: {
+            scrollTo: (
+              target: Element | string | number,
+              options?: {
+                offset?: number;
+                duration?: number;
+                easing?: (t: number) => number;
+                immediate?: boolean;
+              }
+            ) => void;
+          };
+        };
+
+        if (win?.lenis && typeof win.lenis.scrollTo === "function") {
+          win.lenis.scrollTo(target, {
+            duration: 1.2,
+          });
+        } else {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }
+    }
+  };
+
   if (href) {
+    const isExternal =
+      href.startsWith("http://") || href.startsWith("https://");
     return (
-      <a href={href} className="flex items-end justify-center">
+      <a
+        href={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        onClick={handleClick}
+        className="flex items-end justify-center"
+      >
         {content}
       </a>
     );

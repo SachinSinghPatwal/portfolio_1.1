@@ -35,7 +35,7 @@ export function HeroSection() {
 
       <div
         id="work"
-        className="relative grid grid-cols-1 md:grid-cols-10 md:grid-rows-10 gap-3.5 w-full h-auto md:h-[700px]"
+        className="relative grid grid-cols-1 mb-6 md:grid-cols-10 md:grid-rows-10 gap-3.5 w-full h-auto md:h-[700px] scroll-mt-20"
       >
         {PANORAMIC_RIBBON_BLOCKS.map((block) => {
           const project = getProject(block);
