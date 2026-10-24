@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { DashedGridBackground, DashedSection } from "@/components/aceternity/DashedBorderContainer";
+import { DashedGridBackground } from "@/components/aceternity/DashedGridBackground";
+import { DashedSection } from "@/components/aceternity/DashedSection";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { CraftSection } from "@/components/CraftSection";
@@ -21,9 +22,9 @@ export default function Home() {
         <HeroSection />
       </DashedSection>
 
-      <DashedSection id="craft">
+      {/* <DashedSection id="craft">
         <CraftSection />
-      </DashedSection>
+      </DashedSection> */}
 
       <DashedSection id="experience">
         <ExperienceSection />

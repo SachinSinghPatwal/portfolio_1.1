@@ -8,7 +8,7 @@ export function Navbar() {
   const { toggleCommand } = usePortfolioStore();
 
   return (
-    <header className="fixed w-full z-30 bg-black/85 backdrop-blur-md border-b border-white/20">
+    <header className="fixed w-full z-30 bg-black/85 backdrop-blur-md ">
       <div className="relative max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         <div className="absolute left-0 top-0 bottom-0 dashed-line-v pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 dashed-line-v pointer-events-none" />
@@ -25,7 +25,7 @@ export function Navbar() {
             </span>
           </div>
           <kbd className="grid grid-flow-col gap-1 items-center p-1 rounded-sm border border-white/40 bg-white/[0.06] text-white">
-            <Command className="size-3.25 text-white" /> 
+            <Command className="size-3.25 text-white" />
             <span>K</span>
           </kbd>
         </button>

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/immutability */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -10,9 +9,10 @@ import {
   Briefcase,
   Layers,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
+import { CommandAction } from "./command-palette/types";
+import { CommandPaletteItem } from "./command-palette/CommandPaletteItem";
 
 export function CommandPalette() {
   const { isCommandOpen, setCommandOpen } = usePortfolioStore();
@@ -35,7 +35,7 @@ export function CommandPalette() {
 
   if (!isCommandOpen) return null;
 
-  const actions = [
+  const actions: CommandAction[] = [
     {
       id: "work",
       label: "Jump to Selected Works",
@@ -96,7 +96,6 @@ export function CommandPalette() {
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
-        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -105,7 +104,6 @@ export function CommandPalette() {
           className="fixed inset-0 bg-black/80 backdrop-blur-sm"
         />
 
-        
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -113,7 +111,6 @@ export function CommandPalette() {
           transition={{ duration: 0.15 }}
           className="relative w-full max-w-lg border border-white/[0.08] bg-zinc-950 shadow-2xl overflow-hidden z-10"
         >
-          
           <div className="flex items-center px-4 border-b border-white/[0.07]">
             <Search className="h-4 w-4 text-zinc-500 mr-2 shrink-0" />
             <input
@@ -125,39 +122,24 @@ export function CommandPalette() {
             />
             <button
               onClick={() => setCommandOpen(false)}
-              className="text-[10px] font-mono px-1.5 py-0.5 border border-white/[0.08] text-zinc-500 hover:text-zinc-300"
+              className="text-[10px] font-mono px-1.5 py-0.5 border border-white/[0.08] text-zinc-500 hover:text-zinc-300 cursor-pointer"
             >
               ESC
             </button>
           </div>
 
-          
           <div className="max-h-72 overflow-y-auto p-2 space-y-1">
             {filtered.length === 0 ? (
               <div className="py-8 text-center text-xs font-mono text-zinc-500">
                 No commands matching &ldquo;{query}&rdquo;
               </div>
             ) : (
-              filtered.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={item.action}
-                    className="w-full flex items-center justify-between px-3 py-2.5 text-left text-xs text-zinc-300 hover:text-white hover:bg-white/[0.04] transition-colors group"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <Icon className="h-4 w-4 text-zinc-500 group-hover:text-zinc-200" />
-                      <span>{item.label}</span>
-                    </div>
-                    <ArrowRight className="h-3 w-3 text-zinc-600 group-hover:text-zinc-300 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                );
-              })
+              filtered.map((item) => (
+                <CommandPaletteItem key={item.id} item={item} />
+              ))
             )}
           </div>
 
-          
           <div className="px-4 py-2 border-t border-white/[0.05] bg-white/[0.01] flex items-center justify-between text-[10px] font-mono text-zinc-500">
             <span>Navigation &amp; Shortcuts</span>
             <span>Press ↵ to run</span>
