@@ -17,21 +17,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sachin Singh Patwal — Frontend Developer",
+  title: "Sachin Singh Patwal — Full Stack Developer",
   description:
-    "Clean, minimal, centered dark portfolio of Sachin Singh Patwal.",
+    "Clean, minimal, centered dark portfolio of Sachin Singh Patwal — Full Stack Developer.",
   keywords: [
-    "Frontend Developer",
+    "Full Stack Developer",
+    "Full Stack Engineer",
     "Frontend Engineer",
+    "Backend Architecture",
     "Design Systems",
-    "UI/UX",
     "Next.js Portfolio",
+    "React",
+    "TypeScript",
     "Framer Motion",
   ],
   authors: [{ name: "Sachin Singh Patwal" }],
   openGraph: {
-    title: "Sachin Singh Patwal — Frontend Developer Portfolio",
-    description: "I build fast, scalable and beautiful web applications.",
+    title: "Sachin Singh Patwal — Full Stack Developer Portfolio",
+    description: "I build fast, scalable and beautiful full-stack web applications.",
     type: "website",
   },
 };

@@ -23,11 +23,6 @@ export function FloatingDock({ className = "" }: { className?: string }) {
       icon: <FolderBookmark className="h-4 w-4" />,
       href: "#work",
     },
-    // {
-    //   title: "Interactive Craft",
-    //   icon: <Sparkles className="h-4 w-4" />,
-    //   href: "#craft",
-    // },
     {
       title: "Experience",
       icon: <Briefcase className="h-4 w-4" />,
@@ -58,7 +53,7 @@ export function FloatingDock({ className = "" }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4",
+        "fixed bottom-3 sm:bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-2 sm:px-4",
         className,
       )}
     >
@@ -68,7 +63,7 @@ export function FloatingDock({ className = "" }: { className?: string }) {
         transition={{ duration: 0.4, delay: 0.2 }}
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="pointer-events-auto flex items-end h-16 gap-2.5 px-3 pb-3 rounded-2xl border border-white/40 bg-black/80 backdrop-blur-2xl shadow-2xl shadow-black/80"
+        className="pointer-events-auto flex items-end h-14 sm:h-16 gap-1.5 sm:gap-2.5 px-2.5 sm:px-3 pb-2.5 sm:pb-3 rounded-2xl border border-white/40 bg-black/85 backdrop-blur-2xl shadow-2xl shadow-black/80 max-w-[calc(100vw-1.5rem)]"
       >
         {items.map((item) => (
           <React.Fragment key={item.title}>

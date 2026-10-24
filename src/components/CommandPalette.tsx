@@ -110,11 +110,11 @@ export function CommandPalette() {
     },
     {
       id: "copy-email",
-      label: "Copy Direct Email (alex.rivera.craft@gmail.com)",
+      label: "Copy Direct Email (sachinsingh71004@gmail.com)",
       category: "Actions",
       icon: Mail,
       action: () => {
-        navigator.clipboard.writeText("alex.rivera.craft@gmail.com");
+        navigator.clipboard.writeText("sachinsingh71004@gmail.com");
         toast.success("Email copied to clipboard");
         setCommandOpen(false);
       },

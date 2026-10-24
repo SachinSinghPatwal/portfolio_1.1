@@ -59,7 +59,7 @@ export function DockIcon({
             animate={{ opacity: 1, y: -45, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md border border-white/60 bg-zinc-950/95 text-[11px] font-mono text-white whitespace-nowrap shadow-xl"
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md border border-white/60 bg-zinc-950/95 text-[11px] font-mono text-white whitespace-nowrap shadow-xl hidden md:block"
           >
             {title}
           </motion.div>

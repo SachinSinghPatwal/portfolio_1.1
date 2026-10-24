@@ -16,15 +16,16 @@ export function Navbar() {
         <button
           type="button"
           onClick={toggleCommand}
-          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between gap-3 w-64 md:w-80 px-3 py-1.5 rounded-lg border border-white/70 hover:border-white/90 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-mono text-white transition-all shadow-sm group cursor-pointer"
+          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between gap-2 sm:gap-3 w-[calc(100%-3rem)] max-w-[260px] sm:max-w-xs md:w-80 px-2.5 sm:px-3 py-1.5 rounded-lg border border-white/70 hover:border-white/90 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-mono text-white transition-all shadow-sm group cursor-pointer"
         >
-          <div className="flex items-center gap-2">
-            <Search className="h-3.5 w-3.5 text-white group-hover:text-white transition-colors" />
-            <span className="text-[12px] text-zinc-100 group-hover:text-white transition-colors">
-              Search commands or projects
+          <div className="flex items-center gap-2 truncate">
+            <Search className="h-3.5 w-3.5 text-white group-hover:text-white shrink-0 transition-colors" />
+            <span className="text-[12px] text-zinc-100 group-hover:text-white transition-colors truncate">
+              <span className="hidden sm:inline">Search commands or projects</span>
+              <span className="inline sm:hidden">Search commands...</span>
             </span>
           </div>
-          <kbd className="grid grid-flow-col gap-1 items-center p-1 rounded-sm border border-white/40 bg-white/[0.06] text-white">
+          <kbd className="hidden sm:grid grid-flow-col gap-1 items-center p-1 rounded-sm border border-white/40 bg-white/[0.06] text-white shrink-0">
             <Command className="size-3.25 text-white" />
             <span>K</span>
           </kbd>

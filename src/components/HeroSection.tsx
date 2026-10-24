@@ -7,9 +7,12 @@ import { BentoBlock } from "./hero/types";
 import { PANORAMIC_RIBBON_BLOCKS } from "./hero/bento-data";
 import { HeroHeader } from "./hero/HeroHeader";
 import { BentoCardItem } from "./hero/BentoCardItem";
+import { MobileProjectShowcase } from "./hero/MobileProjectShowcase";
+import { useResponsive } from "@/lib/useResponsive";
 
 export function HeroSection() {
   const { setSelectedProject } = usePortfolioStore();
+  const { mounted, isDesktop } = useResponsive();
 
   const pingWarmup = (url?: string) => {
     if (!url || typeof window === "undefined") return;
@@ -29,26 +32,41 @@ export function HeroSection() {
     return null;
   };
 
+  // Curated projects for mobile/tablet showcase (first 5 to match desktop bento slots)
+  const mobileProjects = PROJECTS.slice(0, 5);
+
   return (
-    <div className="relative pt-23 overflow-visible">
+    <div className="relative pt-18 sm:pt-20 md:pt-23 overflow-visible">
       <HeroHeader />
 
+      {/* Desktop View: Full Panoramic 10x10 Ribbon Bento with Live Previews (Preserved for PC) */}
       <div
         id="work"
-        className="relative grid grid-cols-1 mb-6 md:grid-cols-10 md:grid-rows-10 gap-3.5 w-full h-auto md:h-[700px] scroll-mt-20"
+        className="relative hidden lg:grid grid-cols-10 grid-rows-10 gap-3.5 w-full h-[700px] mb-6 scroll-mt-20"
       >
-        {PANORAMIC_RIBBON_BLOCKS.map((block) => {
-          const project = getProject(block);
-          return (
-            <BentoCardItem
-              key={block.id}
-              block={block}
-              project={project}
-              onSelectProject={setSelectedProject}
-              onPingWarmup={pingWarmup}
-            />
-          );
-        })}
+        {/* Render heavy bento cards on desktop or before mount */}
+        {(!mounted || isDesktop) &&
+          PANORAMIC_RIBBON_BLOCKS.map((block) => {
+            const project = getProject(block);
+            return (
+              <BentoCardItem
+                key={block.id}
+                block={block}
+                project={project}
+                onSelectProject={setSelectedProject}
+                onPingWarmup={pingWarmup}
+              />
+            );
+          })}
+      </div>
+
+      {/* Mobile & Tablet View: Clean, high-performance card showcase */}
+      <div className="block lg:hidden scroll-mt-20" id="work-mobile">
+        <MobileProjectShowcase
+          projects={mobileProjects}
+          onSelectProject={setSelectedProject}
+          onPingWarmup={pingWarmup}
+        />
       </div>
     </div>
   );
