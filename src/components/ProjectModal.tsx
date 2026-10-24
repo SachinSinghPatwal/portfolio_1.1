@@ -152,15 +152,15 @@ export function ProjectModal() {
   return (
     <AnimatePresence>
       {selectedProject && (
-        <motion.div
+        <div
           key="project-modal-backdrop-wrapper"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 overflow-hidden pointer-events-auto"
         >
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={() => setSelectedProject(null)}
             className="fixed inset-0 bg-black/85 backdrop-blur-md"
           />
@@ -170,11 +170,11 @@ export function ProjectModal() {
             layoutId={`bento-slot-${selectedProject.id}`}
             transition={{
               type: "spring",
-              stiffness: 520,
-              damping: 38,
-              mass: 0.5,
+              stiffness: 380,
+              damping: 32,
+              mass: 0.8,
             }}
-            className={`relative flex flex-col bg-[#070709] text-left z-10 overflow-hidden shadow-2xl transform-gpu will-change-transform ${
+            className={`relative flex flex-col bg-[#070709] text-left z-10 overflow-hidden shadow-2xl ${
               isFullscreen
                 ? "w-screen h-screen max-w-none border-0"
                 : "w-full max-w-5xl h-full md:h-[88vh] border border-white/[0.1]"
@@ -457,7 +457,7 @@ export function ProjectModal() {
               )}
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );

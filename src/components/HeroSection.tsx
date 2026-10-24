@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePortfolioStore } from "@/store/usePortfolioStore";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
+import { usePortfolioStore, ProjectItem } from "@/store/usePortfolioStore";
 import { PROJECTS } from "@/data/projects";
 import {
   ChevronDown,
@@ -10,6 +10,8 @@ import {
   Check,
   Sparkles,
   RotateCw,
+  ArrowUpRight,
+  ExternalLink,
 } from "lucide-react";
 import { FaGithub, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 
@@ -280,6 +282,294 @@ const BENTO_PRESETS: BentoPreset[] = [
       },
     ],
   },
+  {
+    id: "balanced-split",
+    name: "Balanced Split Studio",
+    sub: "12×6 • 2 Wide Top + 3 Balanced Base",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "bs-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "7 × 3",
+        aspectDesc: "Primary Widescreen Hero",
+        className: "md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "bs-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "5 × 3",
+        aspectDesc: "Secondary Showcase Wing",
+        className: "md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "bs-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "4 × 3",
+        aspectDesc: "Tertiary Base Left",
+        className: "md:col-start-1 md:col-span-4 md:row-start-4 md:row-span-3",
+      },
+      {
+        id: "bs-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "4 × 3",
+        aspectDesc: "Tertiary Base Center",
+        className: "md:col-start-5 md:col-span-4 md:row-start-4 md:row-span-3",
+      },
+      {
+        id: "bs-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "4 × 3",
+        aspectDesc: "Tertiary Base Right",
+        className: "md:col-start-9 md:col-span-4 md:row-start-4 md:row-span-3",
+      },
+    ],
+  },
+  {
+    id: "center-monolith",
+    name: "Center Stage Monolith",
+    sub: "12×6 • Symmetrical Cathedral (Flanked 2-1-2)",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "cm-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "4 × 6",
+        aspectDesc: "Monolithic Center Pillar",
+        className: "md:col-start-5 md:col-span-4 md:row-start-1 md:row-span-6",
+      },
+      {
+        id: "cm-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "4 × 3",
+        aspectDesc: "Left Wing Upper",
+        className: "md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "cm-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "4 × 3",
+        aspectDesc: "Left Wing Lower",
+        className: "md:col-start-1 md:col-span-4 md:row-start-4 md:row-span-3",
+      },
+      {
+        id: "cm-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "4 × 3",
+        aspectDesc: "Right Wing Upper",
+        className: "md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "cm-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "4 × 3",
+        aspectDesc: "Right Wing Lower",
+        className: "md:col-start-9 md:col-span-4 md:row-start-4 md:row-span-3",
+      },
+    ],
+  },
+  {
+    id: "triad-duo",
+    name: "Triad & Duo Symphony",
+    sub: "12×6 • 3 Balanced Top + 2 Cinematic Base",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "td-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "4 × 3",
+        aspectDesc: "Upper Triad Left",
+        className: "md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "td-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "4 × 3",
+        aspectDesc: "Upper Triad Center",
+        className: "md:col-start-5 md:col-span-4 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "td-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "4 × 3",
+        aspectDesc: "Upper Triad Right",
+        className: "md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-3",
+      },
+      {
+        id: "td-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "6 × 3",
+        aspectDesc: "Cinematic Base Left",
+        className: "md:col-start-1 md:col-span-6 md:row-start-4 md:row-span-3",
+      },
+      {
+        id: "td-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "6 × 3",
+        aspectDesc: "Cinematic Base Right",
+        className: "md:col-start-7 md:col-span-6 md:row-start-4 md:row-span-3",
+      },
+    ],
+  },
+  {
+    id: "staggered-horizon",
+    name: "Staggered Horizon",
+    sub: "12×6 • Anchor Block + Baseline Duo",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "sh-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "8 × 4",
+        aspectDesc: "Dominant Upper Anchor",
+        className: "md:col-start-1 md:col-span-8 md:row-start-1 md:row-span-4",
+      },
+      {
+        id: "sh-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "4 × 2",
+        aspectDesc: "Upper Right Module",
+        className: "md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-2",
+      },
+      {
+        id: "sh-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "4 × 2",
+        aspectDesc: "Mid Right Module",
+        className: "md:col-start-9 md:col-span-4 md:row-start-3 md:row-span-2",
+      },
+      {
+        id: "sh-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "6 × 2",
+        aspectDesc: "Foundation Horizon Left",
+        className: "md:col-start-1 md:col-span-6 md:row-start-5 md:row-span-2",
+      },
+      {
+        id: "sh-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "6 × 2",
+        aspectDesc: "Foundation Horizon Right",
+        className: "md:col-start-7 md:col-span-6 md:row-start-5 md:row-span-2",
+      },
+    ],
+  },
+  {
+    id: "panoramic-ribbon",
+    name: "Panoramic Ribbon",
+    sub: "12×6 • Full-Width Cinema Band + Duos",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "pr-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "7 × 2",
+        aspectDesc: "Top Gallery Left",
+        className: "md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-2",
+      },
+      {
+        id: "pr-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "5 × 2",
+        aspectDesc: "Top Gallery Right",
+        className: "md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-2",
+      },
+      {
+        id: "pr-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "12 × 2",
+        aspectDesc: "Full Horizon Cinema Ribbon",
+        className: "md:col-start-1 md:col-span-12 md:row-start-3 md:row-span-2",
+      },
+      {
+        id: "pr-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "5 × 2",
+        aspectDesc: "Base Anchor Left",
+        className: "md:col-start-1 md:col-span-5 md:row-start-5 md:row-span-2",
+      },
+      {
+        id: "pr-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "7 × 2",
+        aspectDesc: "Base Anchor Right",
+        className: "md:col-start-6 md:col-span-7 md:row-start-5 md:row-span-2",
+      },
+    ],
+  },
+  {
+    id: "inverted-anchor",
+    name: "Inverted Studio Anchor",
+    sub: "12×6 • Right Flagship + Stacked Left",
+    gridClass: "grid-cols-1 md:grid-cols-12 md:grid-rows-6",
+    blocks: [
+      {
+        id: "ia-1",
+        projectIndex: 0,
+        slotLabel: "Slot 01",
+        dimensions: "7 × 4",
+        aspectDesc: "Right Flagship Hero",
+        className: "md:col-start-6 md:col-span-7 md:row-start-1 md:row-span-4",
+      },
+      {
+        id: "ia-2",
+        projectIndex: 1,
+        slotLabel: "Slot 02",
+        dimensions: "5 × 2",
+        aspectDesc: "Upper Left Module",
+        className: "md:col-start-1 md:col-span-5 md:row-start-1 md:row-span-2",
+      },
+      {
+        id: "ia-3",
+        projectIndex: 2,
+        slotLabel: "Slot 03",
+        dimensions: "5 × 2",
+        aspectDesc: "Mid Left Module",
+        className: "md:col-start-1 md:col-span-5 md:row-start-3 md:row-span-2",
+      },
+      {
+        id: "ia-4",
+        projectIndex: 3,
+        slotLabel: "Slot 04",
+        dimensions: "6 × 2",
+        aspectDesc: "Base Left Wing",
+        className: "md:col-start-1 md:col-span-6 md:row-start-5 md:row-span-2",
+      },
+      {
+        id: "ia-5",
+        projectIndex: 4,
+        slotLabel: "Slot 05",
+        dimensions: "6 × 2",
+        aspectDesc: "Base Right Wing",
+        className: "md:col-start-7 md:col-span-6 md:row-start-5 md:row-span-2",
+      },
+    ],
+  },
 ];
 
 function BentoLivePreview({
@@ -302,7 +592,7 @@ function BentoLivePreview({
   }, [previewUrl]);
 
   return (
-    <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405] border border-white/[0.08] shadow-inner">
+    <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405]">
       <div
         className={`absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-[#040405] transition-opacity duration-300 ${
           loaded ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -331,6 +621,219 @@ function BentoLivePreview({
         loading="eager"
       />
     </div>
+  );
+}
+
+function BentoCardItem({
+  block,
+  project,
+  onSelectProject,
+  onPingWarmup,
+}: {
+  block: BentoBlock;
+  project: ProjectItem | null;
+  onSelectProject: (p: ProjectItem) => void;
+  onPingWarmup: (url?: string) => void;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isOverSlideBar, setIsOverSlideBar] = useState(false);
+
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+    setIsHovered(true);
+    if (project) {
+      onPingWarmup(project.healthCheckUrl || project.previewUrl);
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setIsOverSlideBar(false);
+  };
+
+  const showCustomCursor = Boolean(project && isHovered && !isOverSlideBar);
+
+  return (
+    <motion.div
+      key={block.id}
+      layoutId={project ? `bento-slot-${project.id}` : undefined}
+      transition={{
+        type: "spring",
+        stiffness: 380,
+        damping: 32,
+        mass: 0.8,
+      }}
+      onClick={() => {
+        if (project) {
+          onSelectProject(project);
+        }
+      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative ${block.className} border border-black hover:border-black bg-transparent z-10 hover:z-20 ${
+        showCustomCursor ? "cursor-none" : "cursor-pointer"
+      } flex flex-col justify-between overflow-hidden`}
+    >
+      {/* Custom Mouse Follower: blobby link icon, inverted color, mild white semi-transparent with instant tracking */}
+      {project && (
+        <motion.div
+          style={{
+            x: mouseX,
+            y: mouseY,
+            translateX: "-50%",
+            translateY: "-50%",
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{
+            scale: showCustomCursor ? 1 : 0,
+            opacity: showCustomCursor ? 1 : 0,
+          }}
+          className="pointer-events-none absolute z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white outline outline-1 outline-black outline-offset-[-1.5px]"
+        >
+          <ExternalLink className="size-5 stroke-[1.5] text-black" />
+        </motion.div>
+      )}
+
+      {project?.isLive && project?.previewUrl ? (
+        <>
+          <BentoLivePreview
+            previewUrl={project.previewUrl}
+            title={project.title}
+          />
+          <div className="px-3 py-1.5 border-t border-white/[0.06] bg-[#070709] flex items-center justify-between text-[11px] font-mono text-zinc-400 shrink-0">
+            <span>React, Next, HTML, CSS</span>
+          </div>
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
+          <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">
+            {block.dimensions}
+          </div>
+          <div className="text-xs font-mono text-zinc-400 group-hover:text-zinc-200 transition-colors">
+            {project ? project.title : "Custom Module"}
+          </div>
+          <div className="text-[10px] font-mono text-zinc-600 tracking-tight mt-0.5">
+            {block.aspectDesc}
+          </div>
+        </div>
+      )}
+
+      {/* Slide bar from bottom to top: max 50% element height, stops propagation & opens tab view */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            key={`slidebar-${block.id}`}
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{
+              duration: 0.32,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            onMouseEnter={() => setIsOverSlideBar(true)}
+            onMouseLeave={() => setIsOverSlideBar(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (project) {
+                onSelectProject(project);
+              }
+            }}
+            className="absolute inset-x-0 bottom-0 z-30 max-h-[50%] h-auto bg-[#09090c]/95 backdrop-blur-md border-t border-white/[0.14] p-2.5 sm:p-3 text-left flex flex-col justify-between gap-1.5 shadow-2xl overflow-hidden cursor-default"
+          >
+            <div className="flex items-start justify-between gap-2 min-w-0">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 truncate">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
+                  <h4 className="text-xs font-mono font-semibold text-white truncate">
+                    {project ? project.title : "Custom Module"}
+                  </h4>
+                  {project?.category && (
+                    <span className="text-[9px] font-mono text-zinc-400 px-1 py-0.5 border border-white/[0.08] bg-white/[0.04] shrink-0">
+                      {project.category}
+                    </span>
+                  )}
+                </div>
+                <p className="text-[10px] font-mono text-zinc-400 line-clamp-1 mt-0.5">
+                  {project?.tagline || block.aspectDesc}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.06] mt-auto">
+              <div className="flex items-center gap-1 overflow-hidden">
+                {project?.tags?.slice(0, 2).map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[9px] font-mono text-zinc-400 px-1.5 py-0.5 bg-white/[0.03] border border-white/[0.06] truncate"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-1.5 shrink-0">
+                {project?.liveUrl && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.liveUrl, "_blank", "noopener,noreferrer");
+                    }}
+                    className="p-1 text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
+                    title="Live Demo"
+                  >
+                    <ExternalLink className="size-3" />
+                  </button>
+                )}
+                {project?.githubUrl && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(
+                        project.githubUrl,
+                        "_blank",
+                        "noopener,noreferrer",
+                      );
+                    }}
+                    className="p-1 text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
+                    title="GitHub Repository"
+                  >
+                    <FaGithub className="size-3" />
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (project) {
+                      onSelectProject(project);
+                    }
+                  }}
+                  className="flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono bg-white/[0.08] hover:bg-white/[0.16] text-zinc-200 hover:text-white border border-white/[0.12] transition-colors cursor-pointer"
+                  title="Open Tab View"
+                >
+                  <ArrowUpRight className="size-3" />
+                  <span>Tab View</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -434,12 +937,15 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-72 border border-white/[0.12] bg-[#09090c]/95 backdrop-blur-xl p-1.5 shadow-2xl z-50 text-left"
+                className="absolute right-0 top-full mt-2 w-80 sm:w-84 max-h-[460px] flex flex-col border border-white/[0.12] bg-[#09090c]/95 backdrop-blur-xl p-1.5 shadow-2xl z-50 text-left"
               >
-                <div className="px-2.5 py-1.5 text-[10px] font-mono text-zinc-500 uppercase tracking-wider border-b border-white/[0.06] mb-1">
-                  Select Bento Combination
+                <div className="flex items-center justify-between px-2.5 py-1.5 text-[10px] font-mono text-zinc-500 uppercase tracking-wider border-b border-white/[0.06] mb-1 shrink-0">
+                  <span>Select Bento Combination</span>
+                  <span className="text-zinc-600 font-mono">
+                    {BENTO_PRESETS.length} Layouts
+                  </span>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1 overflow-y-auto overscroll-contain pr-1 flex-1">
                   {BENTO_PRESETS.map((preset) => {
                     const isSelected = preset.id === currentPreset.id;
                     return (
@@ -481,62 +987,15 @@ export function HeroSection() {
         id="work"
         className={`relative grid ${currentPreset.gridClass} gap-3.5 w-full h-auto md:h-[620px]`}
       >
-        {currentPreset.blocks.map((block) => {
-          const project = getProject(block);
-
-          return (
-            <motion.div
-              key={block.id}
-              layoutId={project ? `bento-slot-${project.id}` : undefined}
-              transition={{
-                type: "spring",
-                stiffness: 520,
-                damping: 38,
-                mass: 0.5,
-              }}
-              onClick={() => {
-                if (project) {
-                  setSelectedProject(project);
-                }
-              }}
-              onMouseEnter={() => {
-                if (project) {
-                  pingWarmup(project.healthCheckUrl || project.previewUrl);
-                }
-              }}
-              className={`group relative ${block.className} border border-white/[0.08] hover:border-white/[0.24] bg-white/[0.015] hover:bg-[#0c0c0f] transition-colors duration-200 z-10 hover:z-20 hover:shadow-2xl hover:shadow-black/90 cursor-pointer flex flex-col justify-between overflow-hidden transform-gpu will-change-transform`}
-            >
-              {project?.isLive && project?.previewUrl ? (
-                <>
-                  <BentoLivePreview
-                    previewUrl={project.previewUrl}
-                    title={project.title}
-                  />
-                  <div className="px-3 py-1.5 border-t border-white/[0.06] bg-[#070709] flex items-center justify-between text-[11px] font-mono text-zinc-400 shrink-0">
-                    <span className="truncate font-medium text-zinc-300">
-                      {project.title}
-                    </span>
-                    <span className="text-[10px] text-zinc-600">
-                      {block.dimensions}
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
-                  <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">
-                    {block.dimensions}
-                  </div>
-                  <div className="text-xs font-mono text-zinc-400 group-hover:text-zinc-200 transition-colors">
-                    {project ? project.title : "Custom Module"}
-                  </div>
-                  <div className="text-[10px] font-mono text-zinc-600 tracking-tight mt-0.5">
-                    {block.aspectDesc}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          );
-        })}
+        {currentPreset.blocks.map((block) => (
+          <BentoCardItem
+            key={block.id}
+            block={block}
+            project={getProject(block)}
+            onSelectProject={setSelectedProject}
+            onPingWarmup={pingWarmup}
+          />
+        ))}
       </div>
 
       <div className="flex items-center justify-center gap-6 mt-10 text-zinc-500 text-xs font-mono">
