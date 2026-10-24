@@ -177,7 +177,7 @@ export function ProjectModal() {
             className={`relative flex flex-col bg-[#070709] text-left z-10 overflow-hidden shadow-2xl ${
               isFullscreen
                 ? "w-screen h-screen max-w-none border-0"
-                : "w-full max-w-5xl h-full md:h-[88vh] border border-white/[0.1]"
+                : "w-full max-w-7xl h-full md:h-[88vh] border border-white/[0.1]"
             }`}
           >
             <motion.div

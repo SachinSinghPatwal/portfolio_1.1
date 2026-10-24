@@ -26,7 +26,7 @@ export function DashedSection({
 
       <div
         className={cn(
-          "relative max-w-3xl mx-auto px-6 py-12 md:px-12 md:py-16",
+          "relative max-w-6xl mx-auto px-4 py-12 md:px-8 md:py-16",
           className,
         )}
       >

@@ -27,7 +27,7 @@ export function Navbar() {
 
   return (
     <header className="relative w-full z-30">
-      <div className="relative max-w-3xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
         <div className="absolute left-0 top-0 bottom-0 dashed-line-v pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 dashed-line-v pointer-events-none" />
 
