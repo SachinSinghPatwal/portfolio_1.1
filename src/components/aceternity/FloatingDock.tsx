@@ -36,7 +36,7 @@ export function FloatingDock({ className = "" }: { className?: string }) {
     {
       title: "Resume",
       icon: <File className="h-4 w-4" />,
-      href: "https://drive.google.com/file/d/1titc3emu5Krr1WkMvbftZgV3dSIQEEeg/view?usp=drive_link",
+      href: "https://drive.google.com/file/d/1gFVarOUavAghFUYxRCG-PfXZvGunYRxV/view?usp=drive_link",
     },
     {
       title: "GitHub",
