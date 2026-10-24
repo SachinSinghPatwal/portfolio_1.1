@@ -13,7 +13,7 @@ import { FloatingDock } from "@/components/aceternity/FloatingDock";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#040405] overflow-x-hidden pb-24">
+    <main className="relative min-h-screen bg-[#040405] overflow-x-hidden ">
       <DashedGridBackground />
       <Navbar />
 

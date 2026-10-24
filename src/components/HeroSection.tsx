@@ -4,16 +4,320 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import { usePortfolioStore, ProjectItem } from "@/store/usePortfolioStore";
 import { PROJECTS } from "@/data/projects";
+import { RotateCw, ExternalLink, Code2 } from "lucide-react";
+import { FaGithub, FaCss3Alt } from "react-icons/fa6";
 import {
-  ChevronDown,
-  LayoutGrid,
-  Check,
-  Sparkles,
-  RotateCw,
-  ArrowUpRight,
-  ExternalLink,
-} from "lucide-react";
-import { FaGithub, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiReact,
+  SiTailwindcss,
+  SiBabel,
+  SiVite,
+  SiGreensock,
+  SiWebgl,
+  SiThreedotjs,
+  SiFramer,
+  SiNextdotjs,
+  SiFigma,
+  SiRadixui,
+  SiMongodb,
+  SiRabbitmq,
+  SiGithubactions,
+  SiZod,
+} from "react-icons/si";
+import { TbDatabase, TbLayoutDashboard } from "react-icons/tb";
+
+function AcornIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 2c0 1.8-.8 2.8-1.8 3.5"
+        stroke="#E0A96D"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M5 8.5C5 6.8 8 5.5 12 5.5s7 1.3 7 3c0 .8-.5 1.5-1.2 2H6.2C5.5 10 5 9.3 5 8.5z"
+        fill="#8B5A2B"
+        stroke="#A0522D"
+        strokeWidth="0.8"
+      />
+      <path
+        d="M6.2 10.5C6.5 15.5 9 19.5 12 21c3-1.5 5.5-5.5 5.8-10.5H6.2z"
+        fill="#CD853F"
+        stroke="#A0522D"
+        strokeWidth="0.8"
+      />
+    </svg>
+  );
+}
+
+function PlaywrightIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="8" cy="11.5" r="4.8" fill="#2EAD33" />
+      <circle cx="6.5" cy="10.5" r="0.75" fill="#ffffff" />
+      <circle cx="9.5" cy="10.5" r="0.75" fill="#ffffff" />
+      <path
+        d="M6.7 12.8a2 2 0 0 0 2.6 0"
+        stroke="#ffffff"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      <circle cx="15.5" cy="13" r="4.8" fill="#E84335" />
+      <circle cx="14" cy="12" r="0.75" fill="#ffffff" />
+      <circle cx="17" cy="12" r="0.75" fill="#ffffff" />
+      <path
+        d="M14.2 14.3a2 2 0 0 0 2.6 0"
+        stroke="#ffffff"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ZustandIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="6.2" cy="7.2" r="2.8" fill="#784421" />
+      <circle cx="6.2" cy="7.2" r="1.5" fill="#C68B59" />
+      <circle cx="17.8" cy="7.2" r="2.8" fill="#784421" />
+      <circle cx="17.8" cy="7.2" r="1.5" fill="#C68B59" />
+      <circle cx="12" cy="13.5" r="7.2" fill="#784421" />
+      <ellipse cx="12" cy="15.2" rx="3.5" ry="2.4" fill="#E5B887" />
+      <ellipse cx="12" cy="14.3" rx="1.2" ry="0.8" fill="#1C1917" />
+      <circle cx="9.3" cy="12" r="1" fill="#1C1917" />
+      <circle cx="14.7" cy="12" r="1" fill="#1C1917" />
+      <circle cx="9.6" cy="11.7" r="0.35" fill="#FFFFFF" />
+      <circle cx="15" cy="11.7" r="0.35" fill="#FFFFFF" />
+      <path
+        d="M11 15.8c.6.4 1.4.4 2 0"
+        stroke="#1C1917"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function GuiIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <line x1="4" y1="6" x2="20" y2="6" strokeOpacity="0.4" />
+      <line x1="4" y1="12" x2="20" y2="12" strokeOpacity="0.4" />
+      <line x1="4" y1="18" x2="20" y2="18" strokeOpacity="0.4" />
+      <circle cx="8" cy="6" r="2.5" fill="currentColor" />
+      <circle cx="16" cy="12" r="2.5" fill="currentColor" />
+      <circle cx="10" cy="18" r="2.5" fill="currentColor" />
+    </svg>
+  );
+}
+
+function MernIcon({ className }: { className?: string }) {
+  return (
+    <span
+      className={`font-mono font-bold tracking-tight text-[9px] text-emerald-400 whitespace-nowrap leading-none pt-1 -ml-1.25 ${
+        className || ""
+      }`}
+    >
+      MERN
+    </span>
+  );
+}
+
+function FallbackTechIcon({
+  tag,
+  className,
+}: {
+  tag: string;
+  className?: string;
+}) {
+  const [imgError, setImgError] = useState(false);
+  const slug = tag.toLowerCase().replace(/[\s.\-_]/g, "");
+
+  if (imgError) {
+    return <Code2 className={className || "size-3.5 text-zinc-400"} />;
+  }
+
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src={`https://cdn.simpleicons.org/${slug}/white`}
+      alt={tag}
+      className={`${className || "size-3.5"} object-contain`}
+      onError={() => setImgError(true)}
+      loading="lazy"
+    />
+  );
+}
+
+function renderTechIcon(
+  tag: string,
+  className: string = "size-3.5",
+): React.ReactNode {
+  const normalized = tag.toLowerCase().replace(/[\s\-_.]/g, "");
+
+  switch (normalized) {
+    case "js":
+    case "javascript":
+      return <SiJavascript className={`${className} text-[#F7DF1E]`} />;
+    case "ts":
+    case "typescript":
+      return <SiTypescript className={`${className} text-[#3178C6]`} />;
+    case "html":
+    case "html5":
+      return <SiHtml5 className={`${className} text-[#E34F26]`} />;
+    case "css":
+    case "css3":
+      return <FaCss3Alt className={`${className} text-[#1572B6]`} />;
+    case "acorn":
+      return <AcornIcon className={className} />;
+    case "babel":
+      return <SiBabel className={`${className} text-[#F9DC3E]`} />;
+    case "tailwindcss":
+    case "tailwind":
+      return <SiTailwindcss className={`${className} text-[#06B6D4]`} />;
+    case "react":
+    case "react19":
+      return <SiReact className={`${className} text-[#61DAFB]`} />;
+    case "zustand":
+      return <ZustandIcon className={className} />;
+    case "motion":
+    case "framermotion":
+      return <SiFramer className={`${className} text-[#0055FF]`} />;
+    case "mern":
+      return <MernIcon className={className} />;
+    case "mongodb":
+      return <SiMongodb className={`${className} text-[#47A248]`} />;
+    case "playwright":
+      return <PlaywrightIcon className={className} />;
+    case "rabbitmq":
+      return <SiRabbitmq className={`${className} text-[#FF6600]`} />;
+    case "cicd":
+    case "ci":
+    case "cd":
+      return <SiGithubactions className={`${className} text-[#2088FF]`} />;
+    case "zod":
+      return <SiZod className={`${className} text-[#3E67B1]`} />;
+    case "gsap":
+    case "scrolltrigger":
+      return <SiGreensock className={`${className} text-[#88CE02]`} />;
+    case "webgl":
+    case "webgpu":
+      return <SiWebgl className={`${className} text-[#990000]`} />;
+    case "threejs":
+    case "threedotjs":
+    case "three":
+      return <SiThreedotjs className={`${className} text-white`} />;
+    case "gui":
+    case "lilgui":
+      return <GuiIcon className={`${className} text-zinc-300`} />;
+    case "vite":
+      return <SiVite className={`${className} text-[#646CFF]`} />;
+    case "nextjs":
+    case "nextdotjs":
+      return <SiNextdotjs className={`${className} text-white`} />;
+    case "figma":
+      return <SiFigma className={`${className} text-[#F24E1E]`} />;
+    case "radix":
+      return <SiRadixui className={`${className} text-white`} />;
+    case "dashboard":
+      return <TbLayoutDashboard className={className} />;
+    case "database":
+    case "cms":
+      return <TbDatabase className={className} />;
+    default:
+      return <FallbackTechIcon tag={tag} className={className} />;
+  }
+}
+
+function TechIconItem({ tag }: { tag: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex items-center justify-center min-w-7 h-7 px-1.5 w-auto rounded-md bg-white/[0.05] border border-white/[0.14] hover:border-white/80 hover:bg-white/[0.12] transition-all cursor-pointer shrink-0 text-white"
+    >
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 4, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 2, scale: 0.92 }}
+            transition={{ duration: 0.15 }}
+            className="pointer-events-none absolute bottom-full mb-2 left-1/2 -translate-x-[20.5px] px-2 py-0.5 rounded-md border border-white/60 bg-zinc-950/95 text-[10px] font-mono text-white whitespace-nowrap shadow-2xl z-50"
+          >
+            {tag}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="flex items-center justify-center pointer-events-none">
+        {renderTechIcon(tag, "size-3.5")}
+      </div>
+    </div>
+  );
+}
+
+function GitHubIconItem({ href }: { href: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      title="GitHub Repository"
+      className="relative flex items-center justify-center size-7 rounded-md bg-white/[0.05] border border-white/[0.14] hover:border-white/80 hover:bg-white/[0.12] transition-all cursor-pointer shrink-0 text-white"
+    >
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 4, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 2, scale: 0.92 }}
+            transition={{ duration: 0.15 }}
+            className="pointer-events-none absolute bottom-full mb-2 right-0 px-2 py-0.5 rounded-md border border-white/60 bg-zinc-950/95 text-[10px] font-mono text-white whitespace-nowrap shadow-2xl z-50"
+          >
+            GitHub
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <FaGithub className="size-3.5" />
+    </a>
+  );
+}
 
 interface BentoBlock {
   id: string;
@@ -25,542 +329,46 @@ interface BentoBlock {
   className: string;
 }
 
-interface BentoPreset {
-  id: string;
-  name: string;
-  sub: string;
-  gridClass: string;
-  blocks: BentoBlock[];
-}
-
-const BENTO_PRESETS: BentoPreset[] = [
+const PANORAMIC_RIBBON_BLOCKS: BentoBlock[] = [
   {
-    id: "dual-flagship",
-    name: "Dual Flagship Split",
-    sub: "10×10 • Twin Horizon (2 Top + 3 Base)",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "df-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "5 × 5",
-        aspectDesc: "Twin Flagship Alpha",
-        className: "md:col-start-1 md:col-span-5 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "df-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "5 × 5",
-        aspectDesc: "Twin Flagship Beta",
-        className: "md:col-start-6 md:col-span-5 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "df-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Tertiary Triplet Left",
-        className: "md:col-start-1 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "df-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "4 × 5",
-        aspectDesc: "Tertiary Triplet Center",
-        className: "md:col-start-4 md:col-span-4 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "df-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 5",
-        aspectDesc: "Tertiary Triplet Right",
-        className: "md:col-start-8 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-    ],
+    id: "pr-1",
+    projectIndex: 0,
+    slotLabel: "Slot 01",
+    dimensions: "5 × 3",
+    aspectDesc: "Top Gallery Left",
+    className: "md:col-start-1 md:col-span-5 md:row-start-1 md:row-span-3",
   },
   {
-    id: "center-monolith",
-    name: "Center Stage Monolith",
-    sub: "10×10 • Symmetrical Cathedral (Flanked 2-1-2)",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "cm-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "4 × 10",
-        aspectDesc: "Monolithic Center Pillar",
-        className: "md:col-start-4 md:col-span-4 md:row-start-1 md:row-span-10",
-      },
-      {
-        id: "cm-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "3 × 5",
-        aspectDesc: "Left Wing Upper",
-        className: "md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "cm-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Left Wing Lower",
-        className: "md:col-start-1 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "cm-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "3 × 5",
-        aspectDesc: "Right Wing Upper",
-        className: "md:col-start-8 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "cm-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 5",
-        aspectDesc: "Right Wing Lower",
-        className: "md:col-start-8 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-    ],
+    id: "pr-2",
+    projectIndex: 1,
+    slotLabel: "Slot 02",
+    dimensions: "5 × 3",
+    aspectDesc: "Top Gallery Right",
+    className: "md:col-start-6 md:col-span-5 md:row-start-1 md:row-span-3",
   },
   {
-    id: "golden-spiral",
-    name: "Golden Spiral 10×10",
-    sub: "10×10 • Golden Ratio (Top-Left Flagship)",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "gs-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "6 × 6",
-        aspectDesc: "Primary Flagship Square",
-        className: "md:col-start-1 md:col-span-6 md:row-start-1 md:row-span-6",
-      },
-      {
-        id: "gs-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "4 × 3",
-        aspectDesc: "Upper Right Module",
-        className: "md:col-start-7 md:col-span-4 md:row-start-1 md:row-span-3",
-      },
-      {
-        id: "gs-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "4 × 3",
-        aspectDesc: "Mid Right Module",
-        className: "md:col-start-7 md:col-span-4 md:row-start-4 md:row-span-3",
-      },
-      {
-        id: "gs-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "5 × 4",
-        aspectDesc: "Lower Horizon Left",
-        className: "md:col-start-1 md:col-span-5 md:row-start-7 md:row-span-4",
-      },
-      {
-        id: "gs-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "5 × 4",
-        aspectDesc: "Lower Horizon Right",
-        className: "md:col-start-6 md:col-span-5 md:row-start-7 md:row-span-4",
-      },
-    ],
+    id: "pr-3",
+    projectIndex: 2,
+    slotLabel: "Slot 03",
+    dimensions: "10 × 4",
+    aspectDesc: "Full Horizon Cinema Ribbon",
+    className: "md:col-start-1 md:col-span-10 md:row-start-4 md:row-span-4",
   },
   {
-    id: "triad-duo",
-    name: "Triad & Duo Symphony",
-    sub: "10×10 • 3 Balanced Top + 2 Cinematic Base",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "td-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Triad Left",
-        className: "md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "td-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "4 × 5",
-        aspectDesc: "Upper Triad Center",
-        className: "md:col-start-4 md:col-span-4 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "td-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Triad Right",
-        className: "md:col-start-8 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "td-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "5 × 5",
-        aspectDesc: "Cinematic Base Left",
-        className: "md:col-start-1 md:col-span-5 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "td-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "5 × 5",
-        aspectDesc: "Cinematic Base Right",
-        className: "md:col-start-6 md:col-span-5 md:row-start-6 md:row-span-5",
-      },
-    ],
+    id: "pr-4",
+    projectIndex: 3,
+    slotLabel: "Slot 04",
+    dimensions: "5 × 3",
+    aspectDesc: "Base Gallery Left",
+    className: "md:col-start-1 md:col-span-5 md:row-start-8 md:row-span-3",
   },
   {
-    id: "panoramic-ribbon",
-    name: "Panoramic Ribbon",
-    sub: "10×10 • Full-Width Cinema Band + Duos",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "pr-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "5 × 3",
-        aspectDesc: "Top Gallery Left",
-        className: "md:col-start-1 md:col-span-5 md:row-start-1 md:row-span-3",
-      },
-      {
-        id: "pr-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "5 × 3",
-        aspectDesc: "Top Gallery Right",
-        className: "md:col-start-6 md:col-span-5 md:row-start-1 md:row-span-3",
-      },
-      {
-        id: "pr-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "10 × 4",
-        aspectDesc: "Full Horizon Cinema Ribbon",
-        className: "md:col-start-1 md:col-span-10 md:row-start-4 md:row-span-4",
-      },
-      {
-        id: "pr-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "5 × 3",
-        aspectDesc: "Base Gallery Left",
-        className: "md:col-start-1 md:col-span-5 md:row-start-8 md:row-span-3",
-      },
-      {
-        id: "pr-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "5 × 3",
-        aspectDesc: "Base Gallery Right",
-        className: "md:col-start-6 md:col-span-5 md:row-start-8 md:row-span-3",
-      },
-    ],
-  },
-  {
-    id: "inverted-anchor",
-    name: "Inverted Studio Anchor",
-    sub: "10×10 • Right Flagship + Stacked Left",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "ia-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "4 × 3",
-        aspectDesc: "Upper Left Module",
-        className: "md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-3",
-      },
-      {
-        id: "ia-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "4 × 3",
-        aspectDesc: "Mid Left Module",
-        className: "md:col-start-1 md:col-span-4 md:row-start-4 md:row-span-3",
-      },
-      {
-        id: "ia-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "6 × 6",
-        aspectDesc: "Right Flagship Hero",
-        className: "md:col-start-5 md:col-span-6 md:row-start-1 md:row-span-6",
-      },
-      {
-        id: "ia-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "5 × 4",
-        aspectDesc: "Foundation Left",
-        className: "md:col-start-1 md:col-span-5 md:row-start-7 md:row-span-4",
-      },
-      {
-        id: "ia-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "5 × 4",
-        aspectDesc: "Foundation Right",
-        className: "md:col-start-6 md:col-span-5 md:row-start-7 md:row-span-4",
-      },
-    ],
-  },
-  {
-    id: "left-tower",
-    name: "Vertical Pillar & Quadrant",
-    sub: "10×10 • Monolith Pillar + 2×2 Wing",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "lt-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "4 × 10",
-        aspectDesc: "Vertical Monolith Tower",
-        className: "md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-10",
-      },
-      {
-        id: "lt-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Mid Block",
-        className: "md:col-start-5 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "lt-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Right Block",
-        className: "md:col-start-8 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "lt-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "3 × 5",
-        aspectDesc: "Lower Mid Block",
-        className: "md:col-start-5 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "lt-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 5",
-        aspectDesc: "Lower Right Block",
-        className: "md:col-start-8 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-    ],
-  },
-  {
-    id: "right-tower",
-    name: "Right Pillar & Quadrant",
-    sub: "10×10 • 2×2 Wing + Monolith Pillar",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "rt-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Left Block",
-        className: "md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "rt-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Mid Block",
-        className: "md:col-start-4 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "rt-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "3 × 5",
-        aspectDesc: "Lower Left Block",
-        className: "md:col-start-1 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "rt-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 5",
-        aspectDesc: "Lower Mid Block",
-        className: "md:col-start-4 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "rt-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "4 × 10",
-        aspectDesc: "Vertical Monolith Tower",
-        className: "md:col-start-7 md:col-span-4 md:row-start-1 md:row-span-10",
-      },
-    ],
-  },
-  {
-    id: "staggered-horizon",
-    name: "Staggered Horizon",
-    sub: "10×10 • Dominant 7×5 Hero + Baseline Trio",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "sh-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "7 × 5",
-        aspectDesc: "Dominant Upper Anchor",
-        className: "md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "sh-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Right Module",
-        className: "md:col-start-8 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "sh-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "3 × 5",
-        aspectDesc: "Base Module Left",
-        className: "md:col-start-1 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "sh-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "3 × 5",
-        aspectDesc: "Base Module Center",
-        className: "md:col-start-4 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "sh-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "4 × 5",
-        aspectDesc: "Base Module Right",
-        className: "md:col-start-7 md:col-span-4 md:row-start-6 md:row-span-5",
-      },
-    ],
-  },
-  {
-    id: "inverted-staggered",
-    name: "Inverted Staggered Horizon",
-    sub: "10×10 • Left Module + Dominant 7×5 Hero",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "ish-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "3 × 5",
-        aspectDesc: "Upper Left Module",
-        className: "md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "ish-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "7 × 5",
-        aspectDesc: "Dominant Upper Anchor",
-        className: "md:col-start-4 md:col-span-7 md:row-start-1 md:row-span-5",
-      },
-      {
-        id: "ish-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "4 × 5",
-        aspectDesc: "Base Module Left",
-        className: "md:col-start-1 md:col-span-4 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "ish-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "3 × 5",
-        aspectDesc: "Base Module Center",
-        className: "md:col-start-5 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-      {
-        id: "ish-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 5",
-        aspectDesc: "Base Module Right",
-        className: "md:col-start-8 md:col-span-3 md:row-start-6 md:row-span-5",
-      },
-    ],
-  },
-  {
-    id: "dynamic-matrix",
-    name: "Dynamic Matrix",
-    sub: "10×10 • Asymmetric Interlocking Masonry",
-    gridClass: "grid-cols-1 md:grid-cols-10 md:grid-rows-10",
-    blocks: [
-      {
-        id: "dm-1",
-        projectIndex: 0,
-        slotLabel: "Slot 01",
-        dimensions: "5 × 6",
-        aspectDesc: "Primary Left Anchor",
-        className: "md:col-start-1 md:col-span-5 md:row-start-1 md:row-span-6",
-      },
-      {
-        id: "dm-2",
-        projectIndex: 1,
-        slotLabel: "Slot 02",
-        dimensions: "5 × 4",
-        aspectDesc: "Upper Right Module",
-        className: "md:col-start-6 md:col-span-5 md:row-start-1 md:row-span-4",
-      },
-      {
-        id: "dm-3",
-        projectIndex: 2,
-        slotLabel: "Slot 03",
-        dimensions: "5 × 6",
-        aspectDesc: "Lower Right Anchor",
-        className: "md:col-start-6 md:col-span-5 md:row-start-5 md:row-span-6",
-      },
-      {
-        id: "dm-4",
-        projectIndex: 3,
-        slotLabel: "Slot 04",
-        dimensions: "2 × 4",
-        aspectDesc: "Lower Left Module",
-        className: "md:col-start-1 md:col-span-2 md:row-start-7 md:row-span-4",
-      },
-      {
-        id: "dm-5",
-        projectIndex: 4,
-        slotLabel: "Slot 05",
-        dimensions: "3 × 4",
-        aspectDesc: "Lower Mid Module",
-        className: "md:col-start-3 md:col-span-3 md:row-start-7 md:row-span-4",
-      },
-    ],
+    id: "pr-5",
+    projectIndex: 4,
+    slotLabel: "Slot 05",
+    dimensions: "5 × 3",
+    aspectDesc: "Base Gallery Right",
+    className: "md:col-start-6 md:col-span-5 md:row-start-8 md:row-span-3",
   },
 ];
 
@@ -584,16 +392,13 @@ function BentoLivePreview({
   }, [previewUrl]);
 
   return (
-    <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-hidden bg-[#040405]">
+    <div className="relative w-full flex-1 min-h-[140px] md:min-h-[160px] overflow-visible bg-[#040405]">
       <div
         className={`absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-[#040405] transition-opacity duration-300 ${
           loaded ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
         <RotateCw className="h-4 w-4 animate-spin text-zinc-500" />
-        <span className="text-[10px] font-mono text-zinc-600 animate-pulse">
-          Connecting preview...
-        </span>
       </div>
       <iframe
         ref={iframeRef}
@@ -699,25 +504,14 @@ function BentoCardItem({
       )}
 
       {project?.isLive && project?.previewUrl ? (
-        <>
-          <BentoLivePreview
-            previewUrl={project.previewUrl}
-            title={project.title}
-          />
-          <div className="px-3 py-1.5 border-t border-white/[0.06] bg-[#070709] flex items-center justify-between text-[11px] font-mono text-zinc-400 shrink-0">
-            <span>React, Next, HTML, CSS</span>
-          </div>
-        </>
+        <BentoLivePreview
+          previewUrl={project.previewUrl}
+          title={project.title}
+        />
       ) : (
         <div className="flex flex-col items-center justify-center my-auto py-4 text-center">
-          <div className="h-10 w-10 border border-dashed border-white/[0.12] group-hover:border-white/[0.3] flex items-center justify-center font-mono text-xs text-zinc-400 group-hover:text-white transition-colors mb-2 bg-black/30">
-            {block.dimensions}
-          </div>
           <div className="text-xs font-mono text-zinc-400 group-hover:text-zinc-200 transition-colors">
-            {project ? project.title : "Custom Module"}
-          </div>
-          <div className="text-[10px] font-mono text-zinc-600 tracking-tight mt-0.5">
-            {block.aspectDesc}
+            {project ? project.title : "Module"}
           </div>
         </div>
       )}
@@ -742,86 +536,21 @@ function BentoCardItem({
                 onSelectProject(project);
               }
             }}
-            className="absolute inset-x-0 bottom-0 z-30 max-h-[50%] h-auto bg-[#09090c]/95 backdrop-blur-md border-t border-white/[0.14] p-2.5 sm:p-3 text-left flex flex-col justify-between gap-1.5 shadow-2xl overflow-hidden cursor-default"
+            className="absolute inset-x-0 bottom-0 z-30 max-h-[85%] h-auto bg-[#09090c]/95 backdrop-blur-md border-t border-white/[0.14] px-3 p-2 text-left flex items-center justify-between gap-2 shadow-2xl overflow-visible cursor-default"
           >
-            <div className="flex items-start justify-between gap-2 min-w-0">
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5 truncate">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
-                  <h4 className="text-xs font-mono font-semibold text-white truncate">
-                    {project ? project.title : "Custom Module"}
-                  </h4>
-                  {project?.category && (
-                    <span className="text-[9px] font-mono text-zinc-400 px-1 py-0.5 border border-white/[0.08] bg-white/[0.04] shrink-0">
-                      {project.category}
-                    </span>
-                  )}
-                </div>
-                <p className="text-[10px] font-mono text-zinc-400 line-clamp-1 mt-0.5">
-                  {project?.tagline || block.aspectDesc}
-                </p>
-              </div>
+            {/* Tech Tags from project.tags: wraps to next line if exceeds, with hover title tooltip */}
+            <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+              {project?.tags.map((tag) => (
+                <TechIconItem key={tag} tag={tag} />
+              ))}
             </div>
 
-            <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.06] mt-auto">
-              <div className="flex items-center gap-1 overflow-hidden">
-                {project?.tags?.slice(0, 2).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[9px] font-mono text-zinc-400 px-1.5 py-0.5 bg-white/[0.03] border border-white/[0.06] truncate"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            {/* Action buttons on the right: GitHub matching others on right edge */}
+            {project?.githubUrl && (
+              <div className="shrink-0 self-center ml-auto">
+                <GitHubIconItem href={project.githubUrl} />
               </div>
-
-              <div className="flex items-center gap-1.5 shrink-0">
-                {project?.liveUrl && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(project.liveUrl, "_blank", "noopener,noreferrer");
-                    }}
-                    className="p-1 text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
-                    title="Live Demo"
-                  >
-                    <ExternalLink className="size-3" />
-                  </button>
-                )}
-                {project?.githubUrl && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(
-                        project.githubUrl,
-                        "_blank",
-                        "noopener,noreferrer",
-                      );
-                    }}
-                    className="p-1 text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
-                    title="GitHub Repository"
-                  >
-                    <FaGithub className="size-3" />
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (project) {
-                      onSelectProject(project);
-                    }
-                  }}
-                  className="flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono bg-white/[0.08] hover:bg-white/[0.16] text-zinc-200 hover:text-white border border-white/[0.12] transition-colors cursor-pointer"
-                  title="Open Tab View"
-                >
-                  <ArrowUpRight className="size-3" />
-                  <span>Tab View</span>
-                </button>
-              </div>
-            </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -830,26 +559,7 @@ function BentoCardItem({
 }
 
 export function HeroSection() {
-  const [selectedPresetId, setSelectedPresetId] = useState("dual-flagship");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const { setSelectedProject } = usePortfolioStore();
-
-  const currentPreset =
-    BENTO_PRESETS.find((p) => p.id === selectedPresetId) || BENTO_PRESETS[0];
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const pingWarmup = (url?: string) => {
     if (!url || typeof window === "undefined") return;
@@ -870,8 +580,8 @@ export function HeroSection() {
   };
 
   return (
-    <div className="relative pt-6 pb-8 md:pt-10 overflow-visible">
-      <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto mb-8">
+    <div className="relative pt-23 overflow-visible">
+      <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto mb-2">
         <motion.h1
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -894,132 +604,22 @@ export function HeroSection() {
         </motion.p>
       </div>
 
-      <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 w-full px-1">
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-          <Sparkles className="size-3.5 text-zinc-500" />
-          <span className="text-zinc-300 font-medium">Bento Architecture</span>
-          <span className="text-zinc-600">•</span>
-          <span className="text-zinc-500">
-            10×10 Matrix • {currentPreset.blocks.length} Modules
-          </span>
-        </div>
-
-        <div className="relative" ref={dropdownRef}>
-          <button
-            type="button"
-            onClick={() => setDropdownOpen((prev) => !prev)}
-            className="flex items-center gap-2.5 px-3.5 py-1.5 border border-white/[0.1] bg-[#0c0c0e] hover:bg-white/[0.04] text-xs font-mono text-zinc-200 transition-colors cursor-pointer shadow-lg"
-          >
-            <LayoutGrid className="size-3.5 text-zinc-400" />
-            <span className="font-medium">{currentPreset.name}</span>
-            <span className="text-[10px] text-zinc-500 hidden md:inline">
-              ({currentPreset.sub.split("•")[0].trim()})
-            </span>
-            <ChevronDown
-              className={`size-3.5 text-zinc-400 transition-transform duration-200 ${
-                dropdownOpen ? "rotate-180" : ""
-              }`}
-            />
-          </button>
-
-          <AnimatePresence>
-            {dropdownOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-80 sm:w-84 max-h-[460px] flex flex-col border border-white/[0.12] bg-[#09090c]/95 backdrop-blur-xl p-1.5 shadow-2xl z-50 text-left"
-              >
-                <div className="flex items-center justify-between px-2.5 py-1.5 text-[10px] font-mono text-zinc-500 uppercase tracking-wider border-b border-white/[0.06] mb-1 shrink-0">
-                  <span>Select Bento Combination</span>
-                  <span className="text-zinc-600 font-mono">
-                    {BENTO_PRESETS.length} Layouts
-                  </span>
-                </div>
-                <div className="space-y-1 overflow-y-auto overscroll-contain pr-1 flex-1">
-                  {BENTO_PRESETS.map((preset) => {
-                    const isSelected = preset.id === currentPreset.id;
-                    return (
-                      <button
-                        key={preset.id}
-                        type="button"
-                        onClick={() => {
-                          setSelectedPresetId(preset.id);
-                          setDropdownOpen(false);
-                        }}
-                        className={`w-full flex items-center justify-between p-2 text-left transition-all cursor-pointer ${
-                          isSelected
-                            ? "bg-white/[0.08] text-white"
-                            : "hover:bg-white/[0.04] text-zinc-400 hover:text-zinc-200"
-                        }`}
-                      >
-                        <div>
-                          <div className="text-xs font-mono font-medium flex items-center gap-1.5">
-                            <span>{preset.name}</span>
-                          </div>
-                          <div className="text-[10px] font-mono text-zinc-500">
-                            {preset.sub}
-                          </div>
-                        </div>
-                        {isSelected && (
-                          <Check className="size-3.5 text-zinc-200 shrink-0" />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
       <div
         id="work"
-        className={`relative grid ${currentPreset.gridClass} gap-3.5 w-full h-auto md:h-[700px]`}
+        className="relative grid grid-cols-1 md:grid-cols-10 md:grid-rows-10 gap-3.5 w-full h-auto md:h-[700px]"
       >
-        {currentPreset.blocks.map((block) => (
-          <BentoCardItem
-            key={block.id}
-            block={block}
-            project={getProject(block)}
-            onSelectProject={setSelectedProject}
-            onPingWarmup={pingWarmup}
-          />
-        ))}
-      </div>
-
-      <div className="flex items-center justify-center gap-6 mt-10 text-zinc-500 text-xs font-mono">
-        <a
-          href="https://github.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 hover:text-zinc-200 transition-colors"
-        >
-          <FaGithub className="h-3.5 w-3.5" />
-          <span>GitHub</span>
-        </a>
-        <span>•</span>
-        <a
-          href="https://twitter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 hover:text-zinc-200 transition-colors"
-        >
-          <FaXTwitter className="h-3.5 w-3.5" />
-          <span>X / Twitter</span>
-        </a>
-        <span>•</span>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 hover:text-zinc-200 transition-colors"
-        >
-          <FaLinkedinIn className="h-3.5 w-3.5" />
-          <span>LinkedIn</span>
-        </a>
+        {PANORAMIC_RIBBON_BLOCKS.map((block) => {
+          const project = getProject(block);
+          return (
+            <BentoCardItem
+              key={block.id}
+              block={block}
+              project={project}
+              onSelectProject={setSelectedProject}
+              onPingWarmup={pingWarmup}
+            />
+          );
+        })}
       </div>
     </div>
   );

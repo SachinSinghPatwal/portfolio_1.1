@@ -62,7 +62,7 @@ function DockIcon({
       style={{ width, height }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/[0.18] transition-colors cursor-pointer text-zinc-400 hover:text-white"
+      className="relative flex items-center justify-center rounded-xl border border-white/70 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/90 transition-colors cursor-pointer text-white shadow-sm"
     >
       <AnimatePresence>
         {hovered && (
@@ -71,14 +71,14 @@ function DockIcon({
             animate={{ opacity: 1, y: -45, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md border border-white/[0.08] bg-zinc-950/95 text-[11px] font-mono text-zinc-200 whitespace-nowrap shadow-xl"
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md border border-white/60 bg-zinc-950/95 text-[11px] font-mono text-white whitespace-nowrap shadow-xl"
           >
             {title}
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="flex items-center justify-center pointer-events-none">
+      <div className="flex items-center justify-center pointer-events-none text-white">
         {icon}
       </div>
     </motion.div>
@@ -159,7 +159,7 @@ export function FloatingDock({ className = "" }: { className?: string }) {
         transition={{ duration: 0.4, delay: 0.2 }}
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="pointer-events-auto flex items-end h-16 gap-2.5 px-3 pb-3 rounded-2xl border border-white/[0.08] bg-black/75 backdrop-blur-2xl shadow-2xl shadow-black/80"
+        className="pointer-events-auto flex items-end h-16 gap-2.5 px-3 pb-3 rounded-2xl border border-white/40 bg-black/80 backdrop-blur-2xl shadow-2xl shadow-black/80"
       >
         {items.map((item) => (
           <React.Fragment key={item.title}>
