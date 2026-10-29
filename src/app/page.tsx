@@ -21,7 +21,7 @@ export default function Home() {
         className="absolute top-20 left-5 z-20 hidden sm:block"
       />
       <TypeScriptSnippet
-        className="absolute top-48/100 right-1/5 bottom-1/2 z-20 hidden sm:block"
+        className="absolute top-50/100 right-2/10 bottom-1/2 z-20 hidden sm:block"
       />
       <JavaScriptSnippet
         className="absolute bottom-25 right-3 z-20 hidden sm:block"
